@@ -2,6 +2,7 @@ import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import type { Database } from '@/types/database';
 import { SUPABASE_URL, SUPABASE_ANON_KEY, getRequiredEnv } from '@/lib/utils/env';
+import { getOfflineSupabaseOptions } from '@/lib/supabase/offline';
 
 export async function createClient() {
   const cookieStore = await cookies();
@@ -30,6 +31,7 @@ export async function createClient() {
           }
         },
       },
+      ...getOfflineSupabaseOptions(),
     }
   );
 }

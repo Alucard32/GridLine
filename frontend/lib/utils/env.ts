@@ -31,6 +31,15 @@ export const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
 export const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '';
 
 /**
+ * Local preview without a real Supabase project.
+ * Set NEXT_PUBLIC_OFFLINE_PREVIEW=true, or use a placeholder Supabase URL.
+ */
+export function isOfflinePreview(): boolean {
+  if (process.env.NEXT_PUBLIC_OFFLINE_PREVIEW === 'true') return true;
+  return SUPABASE_URL.includes('placeholder.supabase.co');
+}
+
+/**
  * Site URL for CSRF protection
  * Used to verify request origins in API routes
  */

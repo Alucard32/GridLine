@@ -1,7 +1,11 @@
 import { updateSession } from '@/lib/supabase/middleware';
-import { type NextRequest } from 'next/server';
+import { isOfflinePreview } from '@/lib/utils/env';
+import { NextResponse, type NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
+  if (isOfflinePreview()) {
+    return NextResponse.next();
+  }
   return await updateSession(request);
 }
 
