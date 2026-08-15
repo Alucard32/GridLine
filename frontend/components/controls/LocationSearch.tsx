@@ -34,6 +34,8 @@ export function LocationSearch({ onLocationSelect, currentLocation }: LocationSe
 
   const abortRef = useRef<AbortController | null>(null);
   const requestSeq = useRef(0);
+  // Skip the initial search for the pre-filled current location
+  const userEditedRef = useRef(false);
 
   const cacheRef = useRef(
     new Map<string, { storedAt: number; hits: SearchHit[] }>()
@@ -48,6 +50,7 @@ export function LocationSearch({ onLocationSelect, currentLocation }: LocationSe
 
   const handleSelect = useCallback(
     (location: PosterLocation) => {
+      userEditedRef.current = false;
       onLocationSelect(location);
       setQuery(location.name);
       close();
@@ -119,12 +122,15 @@ export function LocationSearch({ onLocationSelect, currentLocation }: LocationSe
   // Sync query with currentLocation when it changes externally
   useEffect(() => {
     if (currentLocation?.name && query !== currentLocation.name) {
+      userEditedRef.current = false;
       setQuery(currentLocation.name);
     }
   }, [currentLocation?.name]); // Only depend on the name to avoid unnecessary updates
 
-  // Debounce search
+  // Debounce search — only after the user types, not for the pre-filled location
   useEffect(() => {
+    if (!userEditedRef.current) return;
+
     const t = setTimeout(() => {
       performSearch(normalizedQuery);
     }, DEBOUNCE_MS);
@@ -189,7 +195,10 @@ export function LocationSearch({ onLocationSelect, currentLocation }: LocationSe
         <ControlInput
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            userEditedRef.current = true;
+            setQuery(e.target.value);
+          }}
           onKeyDown={onKeyDown}
           onFocus={() => {
             if (results.length > 0) setIsOpen(true);

@@ -6,8 +6,8 @@ import { UseCasesSection } from './UseCasesSection';
 import { HowItWorksSection } from './HowItWorksSection';
 import { StravaIntegration } from './StravaIntegration';
 import { StyleShowcase } from './StyleShowcase';
-import { ProductFormats } from './ProductFormats';
-import { CommunityPreview } from './CommunityPreview';
+// Future: 3D print / sculpture product formats
+// import { ProductFormats } from './ProductFormats';
 import { FinalCTA } from './FinalCTA';
 import { Footer } from '@/components/layout/Footer';
 
@@ -18,10 +18,9 @@ interface RouteThumbnail {
 
 interface LandingPageProps {
   featuredThumbnails?: RouteThumbnail[];
-  communityThumbnails?: RouteThumbnail[];
 }
 
-export function LandingPage({ featuredThumbnails = [], communityThumbnails = [] }: LandingPageProps) {
+export function LandingPage({ featuredThumbnails = [] }: LandingPageProps) {
   // Split featured thumbnails across hero and style sections
   const heroThumbnails = featuredThumbnails.slice(0, 4);
   const styleThumbnails = featuredThumbnails;
@@ -46,11 +45,9 @@ export function LandingPage({ featuredThumbnails = [], communityThumbnails = [] 
       {/* Style Showcase - Gallery of 9 map styles */}
       <StyleShowcase thumbnails={styleThumbnails} />
 
-      {/* Product Formats - Prints vs Sculptures */}
+      {/* Future: 3D print / sculpture product formats
       <ProductFormats />
-
-      {/* Community Preview - Showcase examples (fall back to featured if no community content) */}
-      <CommunityPreview thumbnails={communityThumbnails.length > 0 ? communityThumbnails : featuredThumbnails.slice(0, 6)} />
+      */}
 
       {/* Final CTA */}
       <FinalCTA />

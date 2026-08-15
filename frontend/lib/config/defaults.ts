@@ -2,15 +2,15 @@ import type { PosterConfig, PosterLocation } from '@/types/poster';
 import { getDefaultStyle } from '@/lib/styles';
 
 export const DEFAULT_LOCATION: PosterLocation = {
-  name: 'Chamonix',
-  city: 'Chamonix-Mont-Blanc',
-  subtitle: 'Haute-Savoie, France',
-  center: [6.8694, 45.9237],
+  name: 'Greater London',
+  city: 'London',
+  subtitle: 'England, United Kingdom',
+  center: [-0.1277653, 51.5074456],
   bounds: [
-    [6.8094, 45.8837], // SW corner
-    [6.9294, 45.9637], // NE corner
+    [-0.5103751, 51.2867601], // SW corner
+    [0.3340155, 51.6918741], // NE corner
   ],
-  zoom: 13,
+  zoom: 9,
 };
 
 const defaultStyle = getDefaultStyle();
@@ -69,6 +69,7 @@ export const DEFAULT_CONFIG: PosterConfig = {
     marker: true,
     markerType: 'crosshair',
     markerColor: undefined, // Default to palette primary
+    markerScale: 1,
     roadWeight: 1.0,
   },
 };

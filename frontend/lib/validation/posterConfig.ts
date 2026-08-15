@@ -187,6 +187,8 @@ export const PosterConfigSchema: z.ZodType<PosterConfig> = z.object({
     marker: z.boolean(),
     markerType: z.enum(['pin', 'crosshair', 'dot', 'ring', 'heart', 'home']).optional(),
     markerColor: z.string().optional(),
+    markerScale: z.number().min(0.5).max(1.5).optional(),
+    placedMarkers: z.array(z.tuple([z.number(), z.number()])).optional(),
     roadWeight: z.number(),
     showScaleBar: z.boolean().optional(),
     scaleBarPosition: z.enum(['top-left', 'top-right', 'bottom-left', 'bottom-right']).optional(),

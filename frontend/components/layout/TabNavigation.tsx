@@ -1,16 +1,17 @@
 'use client';
 
-import { Map as MapIcon, Type, Layout, LayoutGrid, Palette, User, Compass, Box, Image } from 'lucide-react';
+import { Map as MapIcon, Type, Layout, LayoutGrid, Palette, User, Compass, Box, Layers } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { ModeToggle } from '@/components/controls/ModeToggle';
+// Future: 3D print / sculpture mode toggle
+// import { ModeToggle } from '@/components/controls/ModeToggle';
 import { WaymarkerLogo } from '@/components/ui/WaymarkerLogo';
 import type { ProductMode } from '@/types/sculpture';
 
-export type Tab = 'library' | 'location' | 'style' | 'text' | 'frame' | 'sculpture' | 'account';
+export type Tab = 'library' | 'location' | 'style' | 'layers' | 'text' | 'frame' | 'sculpture' | 'account';
 
 // Tabs available for each mode
-const posterTabs: Tab[] = ['library', 'location', 'style', 'text', 'frame'];
+const posterTabs: Tab[] = ['library', 'location', 'style', 'layers', 'text', 'frame'];
 const sculptureTabs: Tab[] = ['library', 'location', 'style', 'sculpture'];
 
 interface TabNavigationProps {
@@ -31,12 +32,11 @@ export function TabNavigation({
   onToggleDrawer,
   onOpenExplore,
   productMode,
-  onModeChange,
-  hasRoute,
+  onModeChange: _onModeChange,
+  hasRoute: _hasRoute,
 }: TabNavigationProps) {
   // Get tabs based on current mode
   const currentTabs = productMode === 'poster' ? posterTabs : sculptureTabs;
-  const sculptureDisabled = !hasRoute;
 
   const handleTabClick = (id: Tab) => {
     if (activeTab === id && isDrawerOpen) {
@@ -47,14 +47,15 @@ export function TabNavigation({
     }
   };
 
-  // When mode changes, reset to first appropriate tab if current tab isn't available
-  const handleModeChange = (mode: ProductMode) => {
-    onModeChange(mode);
-    const newTabs = mode === 'poster' ? posterTabs : sculptureTabs;
-    if (!newTabs.includes(activeTab) && activeTab !== 'account') {
-      onTabChange(newTabs[1]); // Default to 'location' tab
-    }
-  };
+  // Future: 3D print / sculpture mode toggle
+  // const sculptureDisabled = !hasRoute;
+  // const handleModeChange = (mode: ProductMode) => {
+  //   onModeChange(mode);
+  //   const newTabs = mode === 'poster' ? posterTabs : sculptureTabs;
+  //   if (!newTabs.includes(activeTab) && activeTab !== 'account') {
+  //     onTabChange(newTabs[1]); // Default to 'location' tab
+  //   }
+  // };
 
   const TabButton = ({ id, icon: Icon, label }: { id: Tab, icon: any, label: string }) => (
     <button
@@ -83,6 +84,7 @@ export function TabNavigation({
     library: { icon: LayoutGrid, label: 'Gallery' },
     location: { icon: MapIcon, label: 'Location' },
     style: { icon: Palette, label: 'Style' },
+    layers: { icon: Layers, label: 'Layers' },
     text: { icon: Type, label: 'Text' },
     frame: { icon: Layout, label: 'Frame' },
     sculpture: { icon: Box, label: 'Sculpture' },
@@ -97,7 +99,7 @@ export function TabNavigation({
         </Link>
       </div>
 
-      {/* Mode Toggle - Desktop only, below logo */}
+      {/* Future: 3D print / sculpture mode toggle
       <div className="hidden md:block w-full">
         <ModeToggle
           mode={productMode}
@@ -106,7 +108,6 @@ export function TabNavigation({
         />
       </div>
 
-      {/* Mobile Mode Toggle - compact toggle at left of bottom nav */}
       <div className="flex md:hidden items-center border-r border-border px-2">
         <div className="flex rounded-lg bg-secondary p-0.5">
           <button
@@ -138,6 +139,7 @@ export function TabNavigation({
           </button>
         </div>
       </div>
+      */}
 
       <div className="flex md:flex-col flex-1 md:flex-none md:w-full md:space-y-1">
         {currentTabs.map((tabId) => {

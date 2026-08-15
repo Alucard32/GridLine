@@ -4,7 +4,7 @@ import { PosterConfig, LayerToggle, ColorPalette } from '@/types/poster';
 import { cn } from '@/lib/utils';
 import { HexColorPicker } from 'react-colorful';
 import { useState, useMemo } from 'react';
-import { Heart, Home, MapPin, Target, Circle, Radio, Ruler } from 'lucide-react';
+import { Heart, Home, MapPin, MapPinPlus, Target, Circle, Radio, Ruler, X } from 'lucide-react';
 import { ControlSection, ControlCheckbox, ControlSlider, ControlLabel, ControlInput, CollapsibleSection } from '@/components/ui/control-components';
 import { Tooltip } from '@/components/ui/tooltip';
 
@@ -13,6 +13,7 @@ interface LayerControlsProps {
   onLayersChange: (layers: Partial<PosterConfig['layers']>) => void;
   availableToggles: LayerToggle[];
   palette: ColorPalette;
+  locationCenter: [number, number];
 }
 
 const markerTypes = [
@@ -31,7 +32,7 @@ const scaleBarPositions = [
   { id: 'top-right', label: 'TR', fullLabel: 'Top Right' },
 ] as const;
 
-export function LayerControls({ layers, onLayersChange, availableToggles, palette }: LayerControlsProps) {
+export function LayerControls({ layers, onLayersChange, availableToggles, palette, locationCenter }: LayerControlsProps) {
   const [showMarkerColorPicker, setShowMarkerColorPicker] = useState(false);
   const [showScaleBarColorPicker, setShowScaleBarColorPicker] = useState(false);
   
@@ -68,6 +69,23 @@ export function LayerControls({ layers, onLayersChange, availableToggles, palett
 
   const handleRoadWeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onLayersChange({ roadWeight: parseFloat(e.target.value) });
+  };
+
+  const placedMarkers = layers.placedMarkers ?? [];
+
+  const handleMarkLocation = () => {
+    const [lng, lat] = locationCenter;
+    const alreadyPlaced = placedMarkers.some(
+      ([mlng, mlat]) => Math.abs(mlng - lng) < 1e-7 && Math.abs(mlat - lat) < 1e-7
+    );
+    if (alreadyPlaced) return;
+    onLayersChange({ placedMarkers: [...placedMarkers, [lng, lat]] });
+  };
+
+  const handleRemovePlacedMarker = (index: number) => {
+    onLayersChange({
+      placedMarkers: placedMarkers.filter((_, i) => i !== index),
+    });
   };
 
   // 3D Buildings camera presets - compact labels for UI
@@ -473,6 +491,59 @@ export function LayerControls({ layers, onLayersChange, availableToggles, palett
                         </button>
                       );
                     })}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleMarkLocation}
+                    className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium rounded-lg text-primary dark:text-primary hover:bg-primary/10 dark:hover:bg-primary/20 border border-primary/30 dark:border-primary/40 transition-colors"
+                  >
+                    <MapPinPlus className="h-3.5 w-3.5" />
+                    Mark location
+                  </button>
+                  <p className="text-[8px] text-gray-400 italic">
+                    Places the icon at the current map center
+                  </p>
+                  {placedMarkers.length > 0 && (
+                    <div className="space-y-1.5">
+                      {placedMarkers.map((coords, index) => (
+                        <div
+                          key={`${coords[0]}-${coords[1]}-${index}`}
+                          className="flex items-center justify-between gap-2 rounded-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-2 py-1.5"
+                        >
+                          <span className="text-[10px] text-gray-600 dark:text-gray-300 font-medium truncate">
+                            Marker {index + 1}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => handleRemovePlacedMarker(index)}
+                            className="p-0.5 text-gray-400 hover:text-red-500 transition-colors"
+                            aria-label={`Remove marker ${index + 1}`}
+                          >
+                            <X className="h-3 w-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Icon Scale */}
+                <div className="space-y-1">
+                  <ControlLabel className="text-[10px] uppercase text-gray-500">Icon Size</ControlLabel>
+                  <ControlSlider
+                    min="0.5"
+                    max="1.5"
+                    step="0.05"
+                    value={layers.markerScale ?? 1}
+                    onChange={(e) => onLayersChange({ markerScale: parseFloat(e.target.value) })}
+                    displayValue={`${Math.round((layers.markerScale ?? 1) * 100)}%`}
+                    onValueChange={(value) => onLayersChange({ markerScale: value })}
+                    formatValue={(v) => `${Math.round(v * 100)}%`}
+                    parseValue={(s) => parseInt(s.replace('%', '')) / 100}
+                  />
+                  <div className="flex justify-between text-[10px] text-gray-400 uppercase font-medium">
+                    <span>50%</span>
+                    <span>150%</span>
                   </div>
                 </div>
 

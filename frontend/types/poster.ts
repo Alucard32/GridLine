@@ -148,6 +148,10 @@ export interface PosterConfig {
     marker: boolean;
     markerType?: 'pin' | 'crosshair' | 'dot' | 'ring' | 'heart' | 'home';
     markerColor?: string;
+    /** Icon size multiplier (0.5–1.5, default 1 = 100%) */
+    markerScale?: number;
+    /** Geographic pins placed on the map as [lng, lat] */
+    placedMarkers?: [number, number][];
     roadWeight: number; // New: control road line thickness
     // Scale bar for showing distances
     showScaleBar?: boolean;

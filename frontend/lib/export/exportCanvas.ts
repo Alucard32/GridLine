@@ -173,13 +173,34 @@ export async function exportMapToPNG(options: ExportOptions): Promise<Blob> {
     exportCtx.drawImage(mapCanvas, marginPx, marginPx, drawWidth, drawHeight);
     exportCtx.restore();
 
-    // 5. DRAW MARKER (only when there's no route - routes have their own start/end markers)
-    if (config.layers.marker && !config.route?.data) {
-      const markerX = marginPx + drawWidth / 2;
-      const markerY = marginPx + drawHeight / 2;
-      const markerSize = exportResolution.width * 0.045;
+    // 5. DRAW MARKERS
+    if (config.layers.marker) {
+      const markerSize = exportResolution.width * 0.045 * (config.layers.markerScale ?? 1);
       const markerColor = config.layers.markerColor || config.palette.primary || config.palette.accent || config.palette.text;
-      drawMarker(exportCtx, markerX, markerY, markerSize, markerColor, config.layers.markerType || 'crosshair');
+      const markerType = config.layers.markerType || 'crosshair';
+      const placedMarkers = config.layers.placedMarkers ?? [];
+
+      if (placedMarkers.length > 0) {
+        const canvas = map.getCanvas();
+        const cssWidth = canvas.clientWidth || canvas.width;
+        const cssHeight = canvas.clientHeight || canvas.height;
+
+        for (const coords of placedMarkers) {
+          const point = map.project(coords);
+          if (cssWidth <= 0 || cssHeight <= 0) continue;
+          if (point.x < -markerSize || point.x > cssWidth + markerSize) continue;
+          if (point.y < -markerSize || point.y > cssHeight + markerSize) continue;
+
+          const markerX = marginPx + (point.x / cssWidth) * drawWidth;
+          const markerY = marginPx + (point.y / cssHeight) * drawHeight;
+          drawMarker(exportCtx, markerX, markerY, markerSize, markerColor, markerType);
+        }
+      } else if (!config.route?.data) {
+        // Fallback: center viewfinder icon when no geographic pins have been placed
+        const markerX = marginPx + drawWidth / 2;
+        const markerY = marginPx + drawHeight / 2;
+        drawMarker(exportCtx, markerX, markerY, markerSize, markerColor, markerType);
+      }
     }
 
     // 6. TEXT OVERLAY

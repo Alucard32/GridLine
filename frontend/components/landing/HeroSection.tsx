@@ -147,7 +147,7 @@ export function HeroSection({ thumbnails = [] }: HeroSectionProps) {
           className="text-lg sm:text-xl text-stone-600 dark:text-stone-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           Transform your hiking trails, running routes, and travel memories into stunning
-          wall art and 3D sculptures. Draw a route, upload a GPX file, or import from Strava.
+          wall art. Draw a route, upload a GPX file, or import from Strava.
         </motion.p>
 
         {/* CTAs */}

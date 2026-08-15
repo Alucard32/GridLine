@@ -6,5 +6,4 @@ export { HowItWorksSection } from './HowItWorksSection';
 export { StravaIntegration } from './StravaIntegration';
 export { StyleShowcase } from './StyleShowcase';
 export { ProductFormats } from './ProductFormats';
-export { CommunityPreview } from './CommunityPreview';
 export { FinalCTA } from './FinalCTA';

@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useCallback, useEffect, useState, useMemo } from 'react';
-import Map, { Source, Layer, type MapRef } from 'react-map-gl/maplibre';
+import Map, { Source, Layer, Marker, type MapRef } from 'react-map-gl/maplibre';
 import { Loader2 } from 'lucide-react';
 import type { PosterLocation, PosterConfig, RouteConfig } from '@/types/poster';
 import { cn } from '@/lib/utils';
@@ -325,16 +325,42 @@ export function MapPreview({
         touchZoomRotate={interactive}
         keyboard={interactive}
       >
-      {/* Show center marker only when there's no route - route has its own start/end markers */}
+      {/* Center viewfinder — stays in the middle of the screen */}
       {showMarker && !route?.data && (
-        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
+        <div
+          className={cn(
+            'pointer-events-none absolute inset-0 z-20 flex items-center justify-center',
+            (layers?.placedMarkers?.length ?? 0) > 0 && 'opacity-40'
+          )}
+        >
           <MarkerIcon
             type={layers?.markerType || 'crosshair'}
             color={markerColor}
-            size={40}
+            size={40 * (layers?.markerScale ?? 1)}
           />
         </div>
       )}
+
+      {/* Geographic pins placed via "Mark location" */}
+      {showMarker &&
+        layers?.placedMarkers?.map(([lng, lat], index) => {
+          const markerType = layers.markerType || 'crosshair';
+          return (
+            <Marker
+              key={`${lng}-${lat}-${index}`}
+              longitude={lng}
+              latitude={lat}
+              anchor={markerType === 'pin' ? 'bottom' : 'center'}
+              style={{ pointerEvents: 'none' }}
+            >
+              <MarkerIcon
+                type={markerType}
+                color={markerColor}
+                size={40 * (layers.markerScale ?? 1)}
+              />
+            </Marker>
+          );
+        })}
 
       {/* Route Layer */}
       {routeLineGeoJSON && (
