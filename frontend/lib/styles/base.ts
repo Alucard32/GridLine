@@ -23,13 +23,15 @@ export function getBaseSources(options: BaseSourcesOptions = {}) {
       type: 'vector',
       url: getOpenFreeMapPlanetTileJsonUrl(),
       minzoom: 0,
-      maxzoom: 15,
+      // OpenFreeMap planet tiles only exist through z14; MapLibre overzooms beyond this
+      maxzoom: 14,
     },
     contours: {
       type: 'vector',
       url: getContourTileJsonUrl() || '',
       minzoom: 9,
-      maxzoom: 15,
+      // MapTiler contours-v2 only serves z9–z14; MapLibre overzooms beyond this
+      maxzoom: 14,
     },
     population: {
       type: 'vector',

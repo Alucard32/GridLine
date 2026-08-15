@@ -159,9 +159,12 @@ export async function GET(
         const text = new TextDecoder().decode(data);
         const json = JSON.parse(text);
         
-        // OpenFreeMap specific: Override maxzoom to 15 to unlock high-detail tiles
-        if (sourceKey === 'openfreemap' && json.maxzoom) {
-          json.maxzoom = 15;
+        // Keep OpenFreeMap at its native maxzoom (14). Raising it makes MapLibre
+        // request z15 tiles that do not exist, which renders as a blank map.
+
+        // MapTiler contours-v2 only has native tiles through z14 (400s at z15+)
+        if (sourceKey === 'maptiler' && remainingPath.includes('contours-v2') && json.maxzoom > 14) {
+          json.maxzoom = 14;
         }
 
         // Rewrite tile URLs to go through our proxy
