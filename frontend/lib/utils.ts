@@ -170,11 +170,31 @@ export function throttle<T extends (...args: any[]) => any>(
   wait: number
 ): (...args: Parameters<T>) => void {
   let previous = 0;
-  return function(this: any, ...args: Parameters<T>) {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  let lastArgs: Parameters<T> | null = null;
+  let lastThis: unknown;
+
+  return function(this: unknown, ...args: Parameters<T>) {
     const now = Date.now();
-    if (now - previous > wait) {
+    lastArgs = args;
+    lastThis = this;
+
+    const remaining = wait - (now - previous);
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
       previous = now;
       func.apply(this, args);
+    } else if (!timeout) {
+      timeout = setTimeout(() => {
+        previous = Date.now();
+        timeout = null;
+        if (lastArgs) {
+          func.apply(lastThis, lastArgs);
+        }
+      }, remaining);
     }
   };
 }

@@ -12,6 +12,60 @@ import { logger } from '@/lib/logger';
 import { routeToGeoJSON, routeEndpointsToGeoJSON } from '@/lib/route';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
+/** Windows mice often fire two wheel events per physical notch; ignore the duplicate. */
+const WHEEL_NOTCH_COALESCE_MS = 20;
+
+function attachDiscreteScrollZoom(
+  map: {
+    scrollZoom: { disable: () => void };
+    getCanvasContainer: () => HTMLElement;
+    getZoom: () => number;
+    jumpTo: (options: { zoom: number }) => void;
+  },
+  onZoom: () => void
+): () => void {
+  map.scrollZoom.disable();
+  const container = map.getCanvasContainer();
+  let lastNotchAt = 0;
+  let lastNotchDir = 0;
+
+  const onWheel = (event: WheelEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const dir = Math.sign(event.deltaY);
+    if (dir === 0) return;
+
+    const isMouseNotch =
+      event.deltaMode === WheelEvent.DOM_DELTA_LINE ||
+      event.deltaMode === WheelEvent.DOM_DELTA_PAGE ||
+      Math.abs(event.deltaY) >= 40;
+
+    const currentZoom = map.getZoom();
+    let nextZoom = currentZoom;
+    if (isMouseNotch) {
+      const now = performance.now();
+      if (now - lastNotchAt < WHEEL_NOTCH_COALESCE_MS && dir === lastNotchDir) {
+        return;
+      }
+      lastNotchAt = now;
+      lastNotchDir = dir;
+      nextZoom = Math.round((currentZoom - dir * MAP.SCROLL_ZOOM_STEP) * 10) / 10;
+    } else {
+      nextZoom -= event.deltaY * 0.01;
+    }
+
+    nextZoom = Math.min(MAP.MAX_ZOOM, Math.max(MAP.MIN_ZOOM, nextZoom));
+    if (Math.abs(nextZoom - currentZoom) < 1e-6) return;
+
+    onZoom();
+    map.jumpTo({ zoom: nextZoom });
+  };
+
+  container.addEventListener('wheel', onWheel, { passive: false });
+  return () => container.removeEventListener('wheel', onWheel);
+}
+
 interface MapPreviewProps {
   mapStyle: any;
   location: PosterLocation;
@@ -56,6 +110,11 @@ export function MapPreview({
   const idleHandlerRef = useRef<(() => void) | null>(null);
   const timeoutHandlerRef = useRef<(() => void) | null>(null);
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
+  // Ignore parent location echoes while the user is zooming/panning (and briefly after)
+  const suppressLocationSyncUntilRef = useRef(0);
+  const suppressLocationSyncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const detachScrollZoomRef = useRef<(() => void) | null>(null);
+  const markMapDrivenViewRef = useRef<() => void>(() => {});
 
   // Suppress harmless AbortErrors from MapLibre during rapid prop changes
   // These occur when tile requests are cancelled but are caught by window.onerror
@@ -76,8 +135,8 @@ export function MapPreview({
     return () => window.removeEventListener('error', handleGlobalError);
   }, []);
 
-  // Local viewState for smooth interaction without triggering full app re-renders on every frame
-  // Pitch/bearing: Use manual value if set, else default to 45° if 3D buildings enabled, else 0
+  // Display-only camera state (zoom readout). The Map is uncontrolled so React
+  // does not write zoom back mid-scroll — that skipped every other wheel notch.
   const [viewState, setViewState] = useState({
     longitude: location.center[0],
     latitude: location.center[1],
@@ -86,25 +145,48 @@ export function MapPreview({
     bearing: layers?.buildings3dBearing ?? 0,
   });
 
-  // Sync with external location changes (e.g. search, button clicks)
+  // External location changes (search, geolocate, load). Do not jumpTo while
+  // the user is interacting — those updates are echoes of onMove.
   useEffect(() => {
-    setViewState(prev => ({
-      ...prev,
-      longitude: location.center[0],
-      latitude: location.center[1],
-      zoom: location.zoom,
-    }));
+    if (Date.now() < suppressLocationSyncUntilRef.current) return;
+
+    const [lng, lat] = location.center;
+    setViewState(prev => {
+      if (prev.longitude === lng && prev.latitude === lat && prev.zoom === location.zoom) {
+        return prev;
+      }
+      return { ...prev, longitude: lng, latitude: lat, zoom: location.zoom };
+    });
+
+    const map = mapRef.current?.getMap();
+    if (!map) return;
+
+    const center = map.getCenter();
+    if (
+      Math.abs(center.lng - lng) < 1e-9 &&
+      Math.abs(center.lat - lat) < 1e-9 &&
+      Math.abs(map.getZoom() - location.zoom) < 1e-6
+    ) {
+      return;
+    }
+
+    map.jumpTo({ center: [lng, lat], zoom: location.zoom });
   }, [location.center, location.zoom]);
 
-  // Sync pitch/bearing with layer settings
-  // Use manual value if set, else default to 45° when 3D buildings enabled, else 0
-  // Important: Also depend on `layers` reference to handle project loading (when setConfig replaces entire config)
+  // Apply pitch/bearing from layer controls without making the camera controlled
   useEffect(() => {
-    setViewState(prev => ({
-      ...prev,
-      pitch: layers?.buildings3dPitch ?? (layers?.buildings3d ? 45 : 0),
-      bearing: layers?.buildings3dBearing ?? 0,
-    }));
+    const pitch = layers?.buildings3dPitch ?? (layers?.buildings3d ? 45 : 0);
+    const bearing = layers?.buildings3dBearing ?? 0;
+    setViewState(prev => (
+      prev.pitch === pitch && prev.bearing === bearing
+        ? prev
+        : { ...prev, pitch, bearing }
+    ));
+
+    const map = mapRef.current?.getMap();
+    if (!map) return;
+    if (map.getPitch() !== pitch) map.setPitch(pitch);
+    if (map.getBearing() !== bearing) map.setBearing(bearing);
   }, [layers, layers?.buildings3d, layers?.buildings3dPitch, layers?.buildings3dBearing]);
 
   // Fit map to route bounds when GPX is uploaded
@@ -119,11 +201,29 @@ export function MapPreview({
     }
   }, [route?.data?.bounds]);
 
+  useEffect(() => {
+    const map = mapRef.current?.getMap();
+    if (!map) return;
+    detachScrollZoomRef.current?.();
+    detachScrollZoomRef.current = interactive
+      ? attachDiscreteScrollZoom(map, () => markMapDrivenViewRef.current())
+      : null;
+    return () => {
+      detachScrollZoomRef.current?.();
+      detachScrollZoomRef.current = null;
+    };
+  }, [interactive]);
 
   const handleLoad = useCallback(() => {
-    if (mapRef.current && onMapLoad) {
+    if (mapRef.current) {
       const map = mapRef.current.getMap();
-      onMapLoad(map);
+      detachScrollZoomRef.current?.();
+      detachScrollZoomRef.current = interactive
+        ? attachDiscreteScrollZoom(map, () => markMapDrivenViewRef.current())
+        : null;
+      if (onMapLoad) {
+        onMapLoad(map);
+      }
 
       // Create named handler functions for proper cleanup
       // Use setTimeout to defer state updates and avoid "setState during render" warnings
@@ -165,7 +265,7 @@ export function MapPreview({
       map.on('idle', idleHandler);
       map.on('dataloading', timeoutHandler);
     }
-  }, [onMapLoad]);
+  }, [onMapLoad, interactive]);
 
   // Cleanup event listeners and timeouts when component unmounts or map changes
   useEffect(() => {
@@ -192,16 +292,39 @@ export function MapPreview({
           clearTimeout(timeoutIdRef.current);
           timeoutIdRef.current = null;
         }
+        if (suppressLocationSyncTimerRef.current) {
+          clearTimeout(suppressLocationSyncTimerRef.current);
+          suppressLocationSyncTimerRef.current = null;
+        }
+        detachScrollZoomRef.current?.();
+        detachScrollZoomRef.current = null;
       }
     };
   }, [mapStyle]); // Re-run cleanup when map style changes (new map instance)
 
+  const markMapDrivenView = useCallback(() => {
+    suppressLocationSyncUntilRef.current = Date.now() + 200;
+    if (suppressLocationSyncTimerRef.current) {
+      clearTimeout(suppressLocationSyncTimerRef.current);
+    }
+    suppressLocationSyncTimerRef.current = setTimeout(() => {
+      suppressLocationSyncUntilRef.current = 0;
+      suppressLocationSyncTimerRef.current = null;
+    }, 200);
+  }, []);
+  markMapDrivenViewRef.current = markMapDrivenView;
+
+  const handleMoveStart = useCallback(() => {
+    markMapDrivenView();
+  }, [markMapDrivenView]);
+
   const handleMove = useCallback((evt: any) => {
+    markMapDrivenView();
     setViewState(evt.viewState);
     if (onMove) {
       onMove([evt.viewState.longitude, evt.viewState.latitude], evt.viewState.zoom);
     }
-  }, [onMove]);
+  }, [onMove, markMapDrivenView]);
 
   // Handle map click for draw mode
   const handleClick = useCallback((evt: any) => {
@@ -303,12 +426,13 @@ export function MapPreview({
         <Map
         ref={mapRef}
         key={`${format?.aspectRatio}-${format?.orientation}`}
-        {...viewState}
+        initialViewState={viewState}
         style={{ width: '100%', height: '100%' }}
         mapStyle={mapStyle}
         attributionControl={false}
         preserveDrawingBuffer={true}
         onLoad={handleLoad}
+        onMoveStart={interactive ? handleMoveStart : undefined}
         onMove={interactive ? handleMove : undefined}
         onMoveEnd={interactive ? handleMove : undefined}
         onClick={drawMode ? handleClick : undefined}
@@ -318,7 +442,7 @@ export function MapPreview({
         maxZoom={MAP.MAX_ZOOM}
         minZoom={MAP.MIN_ZOOM}
         cursor={drawMode ? 'crosshair' : undefined}
-        scrollZoom={interactive}
+        scrollZoom={false}
         dragPan={interactive}
         dragRotate={interactive}
         doubleClickZoom={drawMode ? false : interactive}

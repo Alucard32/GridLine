@@ -63,6 +63,8 @@ export const MAP = {
   PIXEL_RATIO: 2,
   /** Temporarily allow higher zoom for export */
   EXPORT_MAX_ZOOM: 24,
+  /** Zoom change per mouse-wheel notch */
+  SCROLL_ZOOM_STEP: 0.1,
 } as const;
 
 /**
