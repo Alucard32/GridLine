@@ -9,6 +9,9 @@ export interface NominatimResult {
   place_id: number;
   type: string;
   class: string;
+  addresstype?: string;
+  importance?: number;
+  place_rank?: number;
   address?: Record<string, string | undefined>;
   namedetails?: Record<string, string | undefined>;
 }
@@ -325,4 +328,106 @@ export function nominatimResultToPosterLocation(result: NominatimResult, zoom?: 
     ],
     zoom: calculatedZoom,
   };
+}
+
+const PREFERRED_ADDRESS_TYPES = new Set([
+  'city',
+  'town',
+  'village',
+  'hamlet',
+  'suburb',
+  'neighbourhood',
+  'quarter',
+]);
+
+function normalizeLabel(value: string | undefined): string {
+  return (value ?? '').trim().toLowerCase();
+}
+
+function addressTypeScore(result: NominatimResult): number {
+  const type = result.addresstype ?? result.type;
+  if (type && PREFERRED_ADDRESS_TYPES.has(type)) return 0;
+  if (type === 'municipality' || type === 'administrative') return 2;
+  return 1;
+}
+
+function compareNominatimResults(a: NominatimResult, b: NominatimResult): number {
+  const importanceDiff = (b.importance ?? 0) - (a.importance ?? 0);
+  if (importanceDiff !== 0) return importanceDiff;
+  return addressTypeScore(a) - addressTypeScore(b);
+}
+
+function bboxArea(bounds: PosterLocation['bounds']): number {
+  const [[minLon, minLat], [maxLon, maxLat]] = bounds;
+  return Math.max(0, maxLon - minLon) * Math.max(0, maxLat - minLat);
+}
+
+function bboxIntersectionArea(a: PosterLocation['bounds'], b: PosterLocation['bounds']): number {
+  const minLon = Math.max(a[0][0], b[0][0]);
+  const minLat = Math.max(a[0][1], b[0][1]);
+  const maxLon = Math.min(a[1][0], b[1][0]);
+  const maxLat = Math.min(a[1][1], b[1][1]);
+  if (maxLon <= minLon || maxLat <= minLat) return 0;
+  return (maxLon - minLon) * (maxLat - minLat);
+}
+
+function boundsMostlyOverlap(a: PosterLocation['bounds'], b: PosterLocation['bounds']): boolean {
+  const intersection = bboxIntersectionArea(a, b);
+  if (intersection <= 0) return false;
+  const smaller = Math.min(bboxArea(a), bboxArea(b));
+  if (smaller <= 0) return true;
+  return intersection / smaller >= 0.5;
+}
+
+function centersCloseKm(a: [number, number], b: [number, number], maxKm = 5): boolean {
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+  const earthRadiusKm = 6371;
+  const dLat = toRad(b[1] - a[1]);
+  const dLon = toRad(b[0] - a[0]);
+  const lat1 = toRad(a[1]);
+  const lat2 = toRad(b[1]);
+  const h =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+  const km = 2 * earthRadiusKm * Math.asin(Math.min(1, Math.sqrt(h)));
+  return km <= maxKm;
+}
+
+function isDuplicateLocation(a: PosterLocation, b: PosterLocation): boolean {
+  if (normalizeLabel(a.name) !== normalizeLabel(b.name)) return false;
+  if (normalizeLabel(a.subtitle) !== normalizeLabel(b.subtitle)) return false;
+  return boundsMostlyOverlap(a.bounds, b.bounds) || centersCloseKm(a.center, b.center);
+}
+
+export interface NominatimSearchHit {
+  id: number;
+  location: PosterLocation;
+}
+
+/**
+ * Convert Nominatim hits to poster locations, dropping OSM duplicates that
+ * collapse to the same UI label (e.g. city + municipality for Tallinn).
+ * Keeps the higher-importance / more specific place type.
+ */
+export function nominatimResultsToSearchHits(
+  results: NominatimResult[],
+  maxHits?: number
+): NominatimSearchHit[] {
+  const mapped = results
+    .map((result) => {
+      const location = nominatimResultToPosterLocation(result);
+      if (!location) return null;
+      return { result, location };
+    })
+    .filter((item): item is { result: NominatimResult; location: PosterLocation } => item !== null)
+    .sort((a, b) => compareNominatimResults(a.result, b.result));
+
+  const unique: NominatimSearchHit[] = [];
+  for (const item of mapped) {
+    const duplicate = unique.some((kept) => isDuplicateLocation(kept.location, item.location));
+    if (duplicate) continue;
+    unique.push({ id: item.result.place_id, location: item.location });
+    if (maxHits !== undefined && unique.length >= maxHits) break;
+  }
+  return unique;
 }
