@@ -56,6 +56,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deployment
 
-This project is deployed on [Netlify](https://www.netlify.com/).
+This project is deployed on [Vercel](https://vercel.com/). The GitHub repo is linked to the `grid-line` Vercel project with **Root Directory** set to `frontend`.
+
+Preview URL for the `Clean-MVP` branch: https://grid-line-git-clean-mvp-grid-line.vercel.app
 
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

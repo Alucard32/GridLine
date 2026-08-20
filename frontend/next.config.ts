@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Crawler-facing routes: set proper cache headers so CDNs (Netlify) don't
+  // Crawler-facing routes: set proper cache headers so CDNs don't
   // serve stale/varied responses to Googlebot. Next.js adds vary: rsc,... headers
   // by default which can confuse search engine crawlers.
   async headers() {
