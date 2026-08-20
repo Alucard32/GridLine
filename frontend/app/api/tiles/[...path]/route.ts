@@ -118,18 +118,35 @@ export async function GET(
       }
     }
 
-    // Forward Referer header for domain-restricted API keys (e.g., MapTiler)
-    // This allows MapTiler to verify requests come from an allowed domain
+    // Forward Referer header for domain-restricted API keys (e.g., MapTiler).
+    // Preview hosts (*.vercel.app) are often missing from the key allowlist; if
+    // MapTiler returns 403 we retry with MAPTILER_HTTP_REFERER (or localhost).
     const incomingReferer = request.headers.get('referer');
     const refererHeader = incomingReferer || `${origin}/`;
-
-    const response = await fetch(tileUrl, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Referer': refererHeader,
-        'Origin': origin,
-      },
+    const browserLikeHeaders = (referer: string, requestOrigin: string) => ({
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      Referer: referer,
+      Origin: requestOrigin.replace(/\/$/, ''),
     });
+
+    let response = await fetch(tileUrl, {
+      headers: browserLikeHeaders(refererHeader, origin),
+    });
+
+    if (sourceKey === 'maptiler' && response.status === 403) {
+      const fallbackReferer =
+        process.env.MAPTILER_HTTP_REFERER?.trim() || 'http://localhost:3000/';
+      if (fallbackReferer !== refererHeader) {
+        const fallbackOrigin = fallbackReferer.replace(/\/$/, '');
+        logger.warn(
+          `MapTiler 403 with Referer=${refererHeader}; retrying with ${fallbackReferer}`
+        );
+        response = await fetch(tileUrl, {
+          headers: browserLikeHeaders(fallbackReferer, fallbackOrigin),
+        });
+      }
+    }
 
     // Track the API request (fire-and-forget)
     trackApiRequest(sourceKey, { isTileJson, isError: !response.ok });

@@ -48,7 +48,7 @@ export function applyPaletteToStyle(
     return updatedStyle;
   }
 
-  handleContourSource(updatedStyle);
+  handleContourSource(updatedStyle, layers);
   
   // Ensure water layers always come after hillshade to hide terrain under water
   reorderLayersForWater(updatedStyle.layers);
@@ -194,35 +194,44 @@ export function applyPaletteToStyle(
   return updatedStyle;
 }
 
-function handleContourSource(style: any) {
-  const contourSource = style.sources?.contours;
-  
-  // If source doesn't exist at all, filter out layers
-  if (!contourSource) {
-    style.layers = style.layers.filter((layer: any) => 
-      layer.id !== 'contours' && 
-      !layer.id.includes('contour') &&
-      !layer.id.includes('bathymetry')
-    );
+function removeContourLayers(style: any) {
+  style.layers = style.layers.filter((layer: any) =>
+    layer.id !== 'contours' &&
+    !layer.id.includes('contour') &&
+    !layer.id.includes('bathymetry')
+  );
+  if (style.sources?.contours) {
+    delete style.sources.contours;
+  }
+}
+
+function handleContourSource(style: any, layers?: PosterConfig['layers']) {
+  // Contours are optional (MapTiler). Omit the source when disabled so MapLibre
+  // does not fetch TileJSON — a domain-restricted key 403 would otherwise
+  // surface as a full-page "Map Loading Error" even though the base map works.
+  if (layers && layers.contours === false) {
+    removeContourLayers(style);
     return;
   }
-  
+
+  const contourSource = style.sources?.contours;
+
+  // If source doesn't exist at all, filter out layers
+  if (!contourSource) {
+    removeContourLayers(style);
+    return;
+  }
+
   // If source exists but URL is empty, try to regenerate it at runtime
   // This handles cases where getBaseUrl() returned empty at module load time
   if (!contourSource.url || contourSource.url === '') {
     const url = getContourTileJsonUrl();
-    
+
     if (url) {
       // Set the URL if we can get it now (browser context has window.location)
       contourSource.url = url;
     } else {
-      // Only filter if we're certain the key is missing
-      // This should be rare if NEXT_PUBLIC_MAPTILER_KEY is set
-      style.layers = style.layers.filter((layer: any) => 
-        layer.id !== 'contours' && 
-        !layer.id.includes('contour') &&
-        !layer.id.includes('bathymetry')
-      );
+      removeContourLayers(style);
     }
   }
   // If URL exists (even if relative), don't filter - let MapLibre handle it

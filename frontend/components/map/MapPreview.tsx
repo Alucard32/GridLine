@@ -359,11 +359,33 @@ export function MapPreview({
   const handleError = useCallback((e: any) => {
     const errorMessage = e.error?.message || e.message || '';
     const errorName = e.error?.name || '';
+    const errorStatus = e.error?.status ?? e.error?.statusCode;
 
     // Ignore AbortErrors - these are harmless and occur when tile requests are
     // cancelled due to rapid style/prop changes (e.g., user tweaking colors)
     if (errorName === 'AbortError' || errorMessage.includes('aborted')) {
       logger.debug('MapLibre tile request aborted (harmless):', errorMessage);
+      return;
+    }
+
+    // Optional MapTiler sources (contours / terrain-rgb) must not block the editor.
+    // Domain-restricted keys return 403 on preview hosts; OpenFreeMap base tiles still work.
+    const isOptionalMapTilerFailure =
+      /\/api\/tiles\/maptiler\//.test(errorMessage) ||
+      /api\.maptiler\.com/.test(errorMessage) ||
+      /contours-v2|terrain-rgb/.test(errorMessage);
+    if (isOptionalMapTilerFailure) {
+      logger.warn('Optional MapTiler source failed (map continues):', errorMessage);
+      return;
+    }
+
+    // Same for other non-critical proxied overlays
+    if (
+      (errorStatus === 403 || errorStatus === 401 || /\(403\)|\(401\)/.test(errorMessage)) &&
+      /\/api\/tiles\//.test(errorMessage) &&
+      !/openfreemap/.test(errorMessage)
+    ) {
+      logger.warn('Optional tile overlay failed (map continues):', errorMessage);
       return;
     }
 
