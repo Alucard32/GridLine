@@ -30,7 +30,7 @@ if (apiKey) {
 
 // Sender config from environment
 export const brevoSender = {
-  name: process.env.BREVO_SENDER_NAME || 'Jonas from GridLine',
+  name: process.env.BREVO_SENDER_NAME || 'Holy from GridLine',
   email: process.env.BREVO_SENDER_EMAIL || 'hello@gridline.eu',
 };
 

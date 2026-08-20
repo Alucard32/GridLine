@@ -22,7 +22,7 @@ ADMIN_PASSWORD=your_secure_admin_password
 # Brevo Email (transactional + marketing emails)
 BREVO_API_KEY=your_brevo_api_key
 BREVO_SENDER_EMAIL=hello@gridline.eu
-BREVO_SENDER_NAME=Jonas from GridLine
+BREVO_SENDER_NAME=Holy from GridLine
 ```
 
 ## Getting Started

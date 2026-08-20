@@ -1,7 +1,7 @@
 # Brevo Email Automation - Product Requirements Document
 
 > **Transactional + marketing email automation for user lifecycle management**
-> Personal, down-to-earth communication from "Jonas from GridLine"
+> Personal, down-to-earth communication from "Holy from GridLine"
 
 **Created**: 2026-01-16
 **Updated**: 2026-01-19
@@ -93,7 +93,7 @@ npm install @getbrevo/brevo
 # Brevo (Email)
 BREVO_API_KEY=xkeysib-...        # Your single API key - used for everything
 BREVO_SENDER_EMAIL=hello@gridline.eu
-BREVO_SENDER_NAME=Jonas from GridLine
+BREVO_SENDER_NAME=Holy from GridLine
 ```
 
 **Note**: Brevo uses ONE API key for all operations (transactional emails, contact management, AND event tracking). The event tracking endpoint uses an `ma-key` header, but you pass your regular API key there too.
@@ -244,7 +244,7 @@ await trackBrevoEvent(
   "purchase_completed",
   // Contact properties (updates the contact record)
   {
-    FIRSTNAME: "Jonas",
+    FIRSTNAME: "Holy",
     HAS_PURCHASED: true,
   },
   // Event properties (available in automation as {{event.propertyName}})
@@ -254,7 +254,7 @@ await trackBrevoEvent(
     productName: "Medium Poster (18x24\")",
     productType: "poster",
     downloadLink: "https://gridline.eu/download/abc123",
-    firstName: "Jonas",
+    firstName: "Holy",
   }
 );
 ```
@@ -266,7 +266,7 @@ curl --request POST \
   --header "accept: application/json" \
   --header "content-type: application/json" \
   --header "api-key: YOUR_API_KEY" \
-  --data '{"event_name":"purchase_completed","identifiers":{"email_id":"user@example.com"},"contact_properties":{"FIRSTNAME":"Jonas","HAS_PURCHASED":true},"event_properties":{"product":"poster_medium","amount":999,"productName":"Medium Poster","productType":"poster","downloadLink":"https://gridline.eu/test","firstName":"Jonas"}}'
+  --data '{"event_name":"purchase_completed","identifiers":{"email_id":"user@example.com"},"contact_properties":{"FIRSTNAME":"Holy","HAS_PURCHASED":true},"event_properties":{"product":"poster_medium","amount":999,"productName":"Medium Poster","productType":"poster","downloadLink":"https://gridline.eu/test","firstName":"Holy"}}'
 ```
 
 ### 4. Update Contact Attributes
@@ -303,7 +303,7 @@ await contactsApi.updateContact("user@example.com", update);
 ```
 Hey!
 
-Jonas here, founder of GridLine.
+Holy here, founder of GridLine.
 
 I'm stoked you signed up! I built GridLine because I wanted a way to turn
 my running and cycling routes into something I could actually hang on my wall -
@@ -321,7 +321,7 @@ Here's what you can do:
 If you have questions or just want to say hi, hit reply - I read every email.
 
 Happy trails,
-Jonas
+Holy
 
 P.S. - The editor saves your work automatically, so feel free to experiment!
 ```
@@ -352,7 +352,7 @@ and create a map of your favorite place. New York, Paris, your hometown...
 anywhere.
 
 Cheers,
-Jonas
+Holy
 ```
 
 #### Email 3: Strava Connect (Day 5)
@@ -379,7 +379,7 @@ Takes about 10 seconds:
 Already have a GPX file? That works too - just drag and drop it onto the editor.
 
 Later,
-Jonas
+Holy
 ```
 
 ---
@@ -421,7 +421,7 @@ If you post it on Instagram or share it anywhere, tag @gridline.eu - I'd
 love to see it!
 
 Thanks again,
-Jonas
+Holy
 
 P.S. - If anything looks off with your download, just reply to this email
 and I'll sort it out.
@@ -450,7 +450,7 @@ If you're happy with it, I'd love if you could:
 And if something didn't work out, let me know - I want to make it right.
 
 Cheers,
-Jonas
+Holy
 ```
 
 ---
@@ -484,7 +484,7 @@ If you're not sure where to start:
 If you have any questions or feedback, I'm all ears - just hit reply.
 
 Cheers,
-Jonas
+Holy
 ```
 
 ---
@@ -520,7 +520,7 @@ But if you're still into the idea of turning adventures into wall art,
 we'd love to have you back.
 
 Cheers,
-Jonas
+Holy
 ```
 
 #### Email: 90-Day Win-back (Final)
@@ -545,7 +545,7 @@ can hang on your wall, we'll be here.
 [Visit GridLine →]
 
 Take care,
-Jonas
+Holy
 
 P.S. - If you have feedback on why GridLine wasn't for you, I'd
 genuinely love to hear it. Just hit reply.
@@ -609,7 +609,7 @@ These events trigger automations in Brevo. Track them using the `/api/v2/trackEv
 - [ ] Add `route_uploaded` event on GPX upload (optional - for future automation)
 - [ ] Add `map_saved` event on save (optional - for future automation)
 
-### Phase 3: Brevo Dashboard Configuration (Jonas does this in Brevo UI)
+### Phase 3: Brevo Dashboard Configuration (Holy does this in Brevo UI)
 - [x] Create contact attributes (HAS_PURCHASED, PURCHASE_COUNT, TOTAL_SPENT, LAST_PURCHASE_DATE, STRAVA_CONNECTED, MAPS_CREATED)
 - [x] Create contact list: "All Users" (ID: #5)
 - [ ] Create email templates with the copy above
@@ -811,7 +811,7 @@ transactionalApi.authentications.apiKey.apiKey = apiKey || '';
 
 // Sender config
 export const brevoSender = {
-  name: process.env.BREVO_SENDER_NAME || 'Jonas from GridLine',
+  name: process.env.BREVO_SENDER_NAME || 'Holy from GridLine',
   email: process.env.BREVO_SENDER_EMAIL || 'hello@gridline.eu',
 };
 ```
@@ -1081,8 +1081,8 @@ Use these placeholders in your HTML:
 
 | Variable | Source | Example |
 |----------|--------|---------|
-| `{{ contact.FIRSTNAME }}` | Contact attribute | "Jonas" |
-| `{{ contact.EMAIL }}` | Contact email | "jonas@example.com" |
+| `{{ contact.FIRSTNAME }}` | Contact attribute | "Holy" |
+| `{{ contact.EMAIL }}` | Contact email | "holy@example.com" |
 | `{{ event.downloadLink }}` | Event property | "https://gridline.eu/download/abc" |
 | `{{ event.productName }}` | Event property | "Medium Poster (18×24\")" |
 | `{{ event.productType }}` | Event property | "poster" or "sculpture" |
@@ -1150,7 +1150,7 @@ Use these placeholders in your HTML:
 
               <!-- Intro -->
               <p style="color: #44403c; font-size: 16px; line-height: 1.7; margin: 0 0 20px 0;">
-                Jonas here, founder of GridLine.
+                Holy here, founder of GridLine.
               </p>
 
               <p style="color: #44403c; font-size: 16px; line-height: 1.7; margin: 0 0 20px 0;">
@@ -1258,7 +1258,7 @@ Use these placeholders in your HTML:
               <!-- Sign off -->
               <p style="color: #44403c; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.7; margin: 0;">
                 Happy trails,<br>
-                <strong style="color: #1c1917;">Jonas</strong>
+                <strong style="color: #1c1917;">Holy</strong>
               </p>
 
             </td>
@@ -1297,7 +1297,7 @@ When creating new emails, follow this checklist:
    - Change the badge text (e.g., "Your download is ready")
    - Update the headline
 3. **Update the content**:
-   - Write body copy in the personal "Jonas" voice
+   - Write body copy in the personal "Holy" voice
    - Use feature cards for lists (or remove if not needed)
    - Update CTA button text and link
 4. **Test thoroughly**:

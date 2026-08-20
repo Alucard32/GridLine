@@ -50,12 +50,12 @@ Create a Brevo-compatible HTML email template based on the email type specified 
 
 ### Voice & Tone
 
-Write as Jonas, founder of GridLine:
+Write as Holy, founder of GridLine:
 - Personal, casual, friendly (not corporate)
 - Direct and conversational
 - Enthusiastic without being over the top
 - Use "I" not "we"
-- Sign off with "Happy trails, Jonas" (or "Take care, Jonas" for final/goodbye emails)
+- Sign off with "Happy trails, Holy" (or "Take care, Holy" for final/goodbye emails)
 
 **Copy rules:**
 - NO em dashes (use periods, commas, or colons instead)
@@ -68,7 +68,7 @@ Write as Jonas, founder of GridLine:
 Use these techniques to improve open rates and engagement:
 
 **1. Lead with relatability:**
-- Share a personal struggle Jonas had ("I almost gave up on my first map...")
+- Share a personal struggle Holy had ("I almost gave up on my first map...")
 - Acknowledge the reader's situation ("Life gets busy. No guilt trip.")
 
 **2. Create emotional visualization:**
@@ -270,7 +270,7 @@ Generate the complete HTML email template that:
 2. Follows the email structure above
 3. Includes all required elements (preview text, MSO conditional, footer with unsubscribe)
 4. Uses the appropriate template variables
-5. Has compelling, on-brand copy in Jonas's voice
+5. Has compelling, on-brand copy in Holy's voice
 6. Is ready to paste directly into Brevo's "Code your own" editor
 
 After generating, remind the user:
