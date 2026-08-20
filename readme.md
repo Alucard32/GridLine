@@ -1,8 +1,8 @@
-# Waymarker
+# GridLine
 
 Create beautiful, personalized map posters and 3D sculptures from your adventures. Upload GPX routes, connect Strava, customize styles, and export high-resolution prints or 3D-printable STL files.
 
-**Live site**: [waymarker.eu](https://waymarker.eu)
+**Live site**: [gridline.eu](https://gridline.eu)
 
 ## Features
 

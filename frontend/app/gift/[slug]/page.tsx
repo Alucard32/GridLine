@@ -53,10 +53,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: gift.metaTitle,
       description: gift.metaDescription,
       type: 'website',
-      url: `https://waymarker.eu/gift/${gift.slug}`,
+      url: `https://gridline.eu/gift/${gift.slug}`,
     },
     alternates: {
-      canonical: `https://waymarker.eu/gift/${gift.slug}`,
+      canonical: `https://gridline.eu/gift/${gift.slug}`,
     },
   };
 }
@@ -91,14 +91,14 @@ export default async function GiftPage({ params }: PageProps) {
     description: gift.metaDescription,
     brand: {
       '@type': 'Brand',
-      name: 'Waymarker',
+      name: 'GridLine',
     },
     offers: {
       '@type': 'Offer',
       price: '12.00',
       priceCurrency: 'EUR',
       availability: 'https://schema.org/InStock',
-      url: `https://waymarker.eu/gift/${gift.slug}`,
+      url: `https://gridline.eu/gift/${gift.slug}`,
     },
   };
 
@@ -110,19 +110,19 @@ export default async function GiftPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://waymarker.eu',
+        item: 'https://gridline.eu',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Gift Ideas',
-        item: 'https://waymarker.eu/gift',
+        item: 'https://gridline.eu/gift',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: gift.title,
-        item: `https://waymarker.eu/gift/${gift.slug}`,
+        item: `https://gridline.eu/gift/${gift.slug}`,
       },
     ],
   };

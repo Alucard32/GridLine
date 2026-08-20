@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Mountain } from 'lucide-react';
 
 export const metadata = {
-  title: 'Login | Waymarker',
+  title: 'Login | GridLine',
   description: 'Sign in to save and share your adventure keepsakes',
 };
 
@@ -67,7 +67,7 @@ export default async function LoginPage({
               Welcome Back
             </h1>
             <p className="text-muted-foreground">
-              Sign in to your Waymarker account
+              Sign in to your GridLine account
             </p>
           </div>
 

@@ -1,4 +1,4 @@
-# Waymarker - Feature Roadmap & Strategy
+# GridLine - Feature Roadmap & Strategy
 
 > Future plans and business strategy. For completed features see [STATUS.md](STATUS.md).
 
@@ -8,7 +8,7 @@
 
 ## Strategic Summary
 
-Waymarker transforms GPS activity data into gallery-worthy wall art for outdoor adventurers. Custom poster art for hikers, cyclists, trail runners, and travelers.
+GridLine transforms GPS activity data into gallery-worthy wall art for outdoor adventurers. Custom poster art for hikers, cyclists, trail runners, and travelers.
 
 ### Ideal Customer Profile (ICP)
 
@@ -23,7 +23,7 @@ Waymarker transforms GPS activity data into gallery-worthy wall art for outdoor 
 
 ### Competitive Advantage
 
-| Feature | Waymarker | Competitors |
+| Feature | GridLine | Competitors |
 | ------- | --------- | ----------- |
 | Map styles | 11 | 3-5 typically |
 | Color palettes | 15+ | Limited |
@@ -317,7 +317,7 @@ The export pipeline has been upgraded from browser-preview quality to profession
 
 ### Current Output Quality
 
-| Printer Type | Max Supported | Waymarker Output | Status |
+| Printer Type | Max Supported | GridLine Output | Status |
 | ------------ | ------------- | ---------------- | ------ |
 | Desktop FDM | 2-5 million | ~400K | Good |
 | Resin SLA | 10-50 million | ~400K | Good |
@@ -422,7 +422,7 @@ The export pipeline has been upgraded from browser-preview quality to profession
 
 ---
 
-**Brand**: Waymarker (waymarker.eu)
+**Brand**: GridLine (gridline.eu)
 
 **ICP**: Hikers, cyclists, trail runners, travelers, race finishers
 

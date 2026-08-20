@@ -2,7 +2,7 @@
 /**
  * Famous Routes Seeding Script
  *
- * Seeds the Waymarker database with iconic hiking, cycling, and running routes.
+ * Seeds the GridLine database with iconic hiking, cycling, and running routes.
  * Run with: pnpm seed:routes
  *
  * Options:

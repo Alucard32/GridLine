@@ -15,7 +15,7 @@ import {
   Loader2,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { WaymarkerLogo } from '@/components/ui/WaymarkerLogo';
+import { GridLineLogo } from '@/components/ui/GridLineLogo';
 import { generateFullShareImage } from '@/lib/export/shareThumbnail';
 
 interface ShareModalProps {
@@ -110,7 +110,7 @@ export function ShareModal({
       const link = document.createElement('a');
       link.href = url;
       const safeName = title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
-      link.download = `${safeName}-waymarker-share.png`;
+      link.download = `${safeName}-gridline-share.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -125,7 +125,7 @@ export function ShareModal({
       const link = document.createElement('a');
       link.href = url;
       const safeName = title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
-      link.download = `${safeName}-waymarker.png`;
+      link.download = `${safeName}-gridline.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -163,13 +163,13 @@ export function ShareModal({
     if (!imageBlob) return;
 
     const shareData: ShareData = {
-      title: `${title} - Created with Waymarker`,
-      text: `Check out my ${type === 'sculpture' ? 'Journey Sculpture' : 'Adventure Print'} of ${title}! 🏔️\n\nCreate your own at waymarker.eu`,
+      title: `${title} - Created with GridLine`,
+      text: `Check out my ${type === 'sculpture' ? 'Journey Sculpture' : 'Adventure Print'} of ${title}! 🏔️\n\nCreate your own at gridline.eu`,
     };
 
     // Try sharing with file if supported
     if (navigator.canShare && 'files' in shareData) {
-      const file = new File([imageBlob], `${title}-waymarker.png`, {
+      const file = new File([imageBlob], `${title}-gridline.png`, {
         type: 'image/png',
       });
       const dataWithFile = { ...shareData, files: [file] };
@@ -188,7 +188,7 @@ export function ShareModal({
     try {
       await navigator.share({
         ...shareData,
-        url: 'https://waymarker.eu',
+        url: 'https://gridline.eu',
       });
     } catch (error) {
       // User cancelled - that's okay
@@ -214,9 +214,9 @@ export function ShareModal({
   const openSocialShare = useCallback(
     (platform: 'twitter' | 'facebook') => {
       const text = encodeURIComponent(
-        `Check out my ${type === 'sculpture' ? 'Journey Sculpture' : 'Adventure Print'} of ${title}! 🏔️ Created with @waymarker_eu`
+        `Check out my ${type === 'sculpture' ? 'Journey Sculpture' : 'Adventure Print'} of ${title}! 🏔️ Created with @gridline_eu`
       );
-      const url = encodeURIComponent('https://waymarker.eu');
+      const url = encodeURIComponent('https://gridline.eu');
 
       let shareUrl = '';
       switch (platform) {
@@ -327,9 +327,9 @@ export function ShareModal({
                 />
                 {/* Watermark overlay */}
                 <div className="absolute bottom-3 right-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-black/60 backdrop-blur-sm">
-                  <WaymarkerLogo size="xs" />
+                  <GridLineLogo size="xs" />
                   <span className="text-[10px] font-medium text-white/90">
-                    waymarker.eu
+                    gridline.eu
                   </span>
                 </div>
               </div>
@@ -502,7 +502,7 @@ export function ShareModal({
                 ) : !isSaved ? (
                   <div className="text-center py-2">
                     <p className="text-xs text-muted-foreground">
-                      💡 Save your map to share it with the Waymarker community
+                      💡 Save your map to share it with the GridLine community
                     </p>
                   </div>
                 ) : isPublished || publishSuccess ? (
@@ -558,19 +558,19 @@ export function ShareModal({
         >
           <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
             <span>Created with</span>
-            <WaymarkerLogo size="xs" showText />
+            <GridLineLogo size="xs" showText />
             <span>•</span>
             <a
-              href="https://waymarker.eu"
+              href="https://gridline.eu"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline font-medium"
             >
-              waymarker.eu
+              gridline.eu
             </a>
           </div>
           <p className="text-center text-[10px] text-muted-foreground/70 mt-2">
-            Tag us @waymarker_eu and we&apos;ll feature your adventure! 🌄
+            Tag us @gridline_eu and we&apos;ll feature your adventure! 🌄
           </p>
         </div>
       </div>

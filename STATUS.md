@@ -1,4 +1,4 @@
-# Waymarker - Implementation Status
+# GridLine - Implementation Status
 
 > Historical record of completed features. For development context see [CLAUDE.md](CLAUDE.md).
 
@@ -118,7 +118,7 @@
 
 ### "Trail & Summit" UI Redesign
 
-Complete visual overhaul to position Waymarker as a premium outdoor adventure platform.
+Complete visual overhaul to position GridLine as a premium outdoor adventure platform.
 
 **Color System**:
 
@@ -531,7 +531,7 @@ Landing pages for famous routes to capture organic search traffic.
 
 ### 2026-01-10
 
-- ✅ Updated favicon to Waymarker mountain logo design
+- ✅ Updated favicon to GridLine mountain logo design
 - ✅ Created comprehensive Programmatic SEO PRD (`docs/PROGRAMMATIC-SEO.md`)
 - ✅ Updated FEATURES.md with SEO growth initiative
 - ✅ Fixed null safety for vote_score in voting components

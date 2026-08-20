@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 import type { TimeRange, ProductTypeFilter, SortOption } from '@/lib/actions/feed';
 
 export const metadata = {
-  title: 'Explore Adventures | Waymarker',
+  title: 'Explore Adventures | GridLine',
   description: 'Discover adventure prints and journey sculptures created by the community',
 };
 

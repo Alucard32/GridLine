@@ -5,8 +5,8 @@ import { MapPin, ArrowLeft, ChevronDown } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'FAQ | Waymarker',
-  description: 'Frequently asked questions about Waymarker - Get answers about creating map prints, Strava integration, and more.',
+  title: 'FAQ | GridLine',
+  description: 'Frequently asked questions about GridLine - Get answers about creating map prints, Strava integration, and more.',
 };
 
 interface FAQItem {
@@ -20,16 +20,16 @@ const faqCategories: { title: string; icon: string; items: FAQItem[] }[] = [
     icon: '🚀',
     items: [
       {
-        question: 'What is Waymarker?',
-        answer: 'Waymarker is a map creation platform that lets you turn your adventures into beautiful wall art. Create stunning prints from hiking trails, runs, bike rides, and travels with customizable styles, colors, and typography.',
+        question: 'What is GridLine?',
+        answer: 'GridLine is a map creation platform that lets you turn your adventures into beautiful wall art. Create stunning prints from hiking trails, runs, bike rides, and travels with customizable styles, colors, and typography.',
       },
       {
-        question: 'Do I need an account to use Waymarker?',
+        question: 'Do I need an account to use GridLine?',
         answer: 'You can explore the editor without an account, but you\'ll need to sign up to save your designs, publish to the community, and connect your Strava account.',
       },
       {
-        question: 'Is Waymarker free to use?',
-        answer: 'Yes! Waymarker is currently free to use. You can create and export high-resolution map prints at no cost. We may introduce premium features in the future.',
+        question: 'Is GridLine free to use?',
+        answer: 'Yes! GridLine is currently free to use. You can create and export high-resolution map prints at no cost. We may introduce premium features in the future.',
       },
     ],
   },
@@ -39,7 +39,7 @@ const faqCategories: { title: string; icon: string; items: FAQItem[] }[] = [
     items: [
       {
         question: 'What map styles are available?',
-        answer: 'Waymarker offers 11 unique map styles including Classic, Minimal, Terrain, Satellite, Watercolor, Blueprint, and more. Each style comes with multiple color palettes to match your aesthetic.',
+        answer: 'GridLine offers 11 unique map styles including Classic, Minimal, Terrain, Satellite, Watercolor, Blueprint, and more. Each style comes with multiple color palettes to match your aesthetic.',
       },
       {
         question: 'Can I add my own routes to the map?',
@@ -47,7 +47,7 @@ const faqCategories: { title: string; icon: string; items: FAQItem[] }[] = [
       },
       {
         question: 'What print sizes are supported?',
-        answer: 'Waymarker supports exports up to 24×36 inches at 300 DPI, perfect for large wall prints. We offer multiple aspect ratios including portrait, landscape, and square formats.',
+        answer: 'GridLine supports exports up to 24×36 inches at 300 DPI, perfect for large wall prints. We offer multiple aspect ratios including portrait, landscape, and square formats.',
       },
       {
         question: 'How do I download my design?',
@@ -61,10 +61,10 @@ const faqCategories: { title: string; icon: string; items: FAQItem[] }[] = [
     items: [
       {
         question: 'How do I connect my Strava account?',
-        answer: 'Go to the editor and look for the Strava option in the route panel. Click "Connect Strava" and authorize Waymarker to access your activities. We only request read-only access.',
+        answer: 'Go to the editor and look for the Strava option in the route panel. Click "Connect Strava" and authorize GridLine to access your activities. We only request read-only access.',
       },
       {
-        question: 'What Strava data does Waymarker access?',
+        question: 'What Strava data does GridLine access?',
         answer: 'We only read your activity data (routes, distances, elevation) with read-only permissions. We never post, modify, or delete anything on your Strava account.',
       },
       {
@@ -79,7 +79,7 @@ const faqCategories: { title: string; icon: string; items: FAQItem[] }[] = [
     items: [
       {
         question: 'What file formats can I upload?',
-        answer: 'Waymarker supports GPX files, which are the standard format for GPS track data. Most GPS devices and apps like Strava, Garmin Connect, and Komoot can export to GPX.',
+        answer: 'GridLine supports GPX files, which are the standard format for GPS track data. Most GPS devices and apps like Strava, Garmin Connect, and Komoot can export to GPX.',
       },
       {
         question: 'Is my data secure?',
@@ -87,7 +87,7 @@ const faqCategories: { title: string; icon: string; items: FAQItem[] }[] = [
       },
       {
         question: 'What browsers are supported?',
-        answer: 'Waymarker works best on modern browsers like Chrome, Firefox, Safari, and Edge. For the best experience, we recommend using the latest version of your browser.',
+        answer: 'GridLine works best on modern browsers like Chrome, Firefox, Safari, and Edge. For the best experience, we recommend using the latest version of your browser.',
       },
     ],
   },
@@ -97,7 +97,7 @@ const faqCategories: { title: string; icon: string; items: FAQItem[] }[] = [
     items: [
       {
         question: 'Do you offer printing services?',
-        answer: 'Currently, Waymarker provides the digital file for you to print yourself or through your preferred print service. We may offer integrated printing in the future.',
+        answer: 'Currently, GridLine provides the digital file for you to print yourself or through your preferred print service. We may offer integrated printing in the future.',
       },
       {
         question: 'What paper should I use for printing?',
@@ -138,7 +138,7 @@ export default function FAQPage() {
               <MapPin className="w-5 h-5 text-primary" />
             </div>
             <span className="font-display font-bold text-lg text-stone-900 dark:text-white">
-              Waymarker
+              GridLine
             </span>
           </Link>
           <Link
@@ -159,7 +159,7 @@ export default function FAQPage() {
             Frequently Asked Questions
           </h1>
           <p className="text-lg text-stone-600 dark:text-stone-400 max-w-xl mx-auto">
-            Everything you need to know about creating beautiful map prints with Waymarker.
+            Everything you need to know about creating beautiful map prints with GridLine.
           </p>
         </div>
       </section>

@@ -3,7 +3,7 @@ import { getRouteSlugs } from '@/lib/seo/routes';
 import { getAllGiftSlugs } from '@/lib/seo/gifts';
 import { getAllGuideSlugs } from '@/lib/seo/guides';
 
-const BASE_URL = 'https://waymarker.eu';
+const BASE_URL = 'https://gridline.eu';
 
 /**
  * Format date as YYYY-MM-DD for sitemap compatibility.

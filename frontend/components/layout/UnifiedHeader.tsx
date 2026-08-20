@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import type { User } from '@supabase/supabase-js';
-import { WaymarkerLogo } from '@/components/ui/WaymarkerLogo';
+import { GridLineLogo } from '@/components/ui/GridLineLogo';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { Button } from '@/components/ui/control-components';
 import { cn } from '@/lib/utils';
@@ -245,8 +245,8 @@ export function UnifiedHeader({
 
             {/* Logo */}
             <Link href="/create" className="flex-shrink-0">
-              <WaymarkerLogo size="md" showText className="hidden sm:flex" />
-              <WaymarkerLogo size="md" className="sm:hidden" />
+              <GridLineLogo size="md" showText className="hidden sm:flex" />
+              <GridLineLogo size="md" className="sm:hidden" />
             </Link>
 
             {/* Breadcrumb (desktop) */}

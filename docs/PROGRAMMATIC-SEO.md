@@ -1,4 +1,4 @@
-# Waymarker - Programmatic SEO Strategy PRD
+# GridLine - Programmatic SEO Strategy PRD
 
 > Comprehensive specification for scalable SEO page generation targeting outdoor enthusiasts, athletes, and gift buyers.
 
@@ -53,14 +53,14 @@ Programmatic SEO creates thousands of targeted landing pages at scale, capturing
 | Conversion potential | 2-5% on high-intent pages |
 | Competitive moat | Strava + GPX + 3D = unique offering |
 
-### Waymarker's Unique Differentiators
+### GridLine's Unique Differentiators
 
-Unlike competitors (Mapiful, Grafomap, MixPlaces), Waymarker has:
+Unlike competitors (Mapiful, Grafomap, MixPlaces), GridLine has:
 
 - **Strava integration** → Direct route import (no competitor has this)
 - **GPX upload** → Any activity source supported
 - **3D terrain & buildings** → Unique visual appeal
-- **European focus** (waymarker.eu) → Local SEO advantage
+- **European focus** (gridline.eu) → Local SEO advantage
 - **Social features** → Community-generated content for SEO
 
 ---
@@ -159,7 +159,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const city = getCityBySlug(params.country, params.city);
 
   return {
-    title: `${city.name} Map Poster | Custom Street Map Print | Waymarker`,
+    title: `${city.name} Map Poster | Custom Street Map Print | GridLine`,
     description: `Create a beautiful custom ${city.name} map poster. Choose from 11 unique styles, add your own routes from Strava, and export in stunning high resolution. Perfect gift for ${city.name} lovers.`,
     keywords: [
       `${city.name} map poster`,
@@ -170,11 +170,11 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     ],
     openGraph: {
       title: `${city.name} Map Poster`,
-      description: `Create your custom ${city.name} map poster with Waymarker`,
+      description: `Create your custom ${city.name} map poster with GridLine`,
       images: [`/og/cities/${params.country}/${params.city}.png`],
     },
     alternates: {
-      canonical: `https://waymarker.eu/map/${params.country}/${params.city}`,
+      canonical: `https://gridline.eu/map/${params.country}/${params.city}`,
     },
   };
 }
@@ -624,7 +624,7 @@ import { triathlons } from '@/lib/seo/triathlons';
 import { giftOccasions } from '@/lib/seo/gifts';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://waymarker.eu';
+  const baseUrl = 'https://gridline.eu';
 
   // Static pages
   const staticPages = [

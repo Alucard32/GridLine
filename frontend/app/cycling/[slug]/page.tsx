@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const thumbnailUrl = await getMapThumbnail(route.mapTitle);
 
   return {
-    title: `${route.name} Poster | Custom Map Art | Waymarker`,
+    title: `${route.name} Poster | Custom Map Art | GridLine`,
     description: `Create a beautiful ${route.name} poster. ${route.distance}km through ${route.region}. Perfect gift for cycling fans. Customize colors, download in high resolution.`,
     keywords: [
       `${route.name} poster`,
@@ -54,11 +54,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${route.name} Poster`,
       description: `Turn the ${route.name} into stunning wall art`,
       type: 'website',
-      url: `https://waymarker.eu/cycling/${route.slug}`,
+      url: `https://gridline.eu/cycling/${route.slug}`,
       images: thumbnailUrl ? [{ url: thumbnailUrl, width: 800, height: 1067 }] : undefined,
     },
     alternates: {
-      canonical: `https://waymarker.eu/cycling/${route.slug}`,
+      canonical: `https://gridline.eu/cycling/${route.slug}`,
     },
   };
 }

@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://waymarker.eu/sitemap.xml',
+    sitemap: 'https://gridline.eu/sitemap.xml',
   }
 }

@@ -74,7 +74,7 @@ export default function ExportDownloadClient({
         console.log('[PAID DOWNLOAD] Config style:', data.configSnapshot?.style?.id);
         try {
           sessionStorage.setItem(
-            'waymarker_paid_export_config',
+            'gridline_paid_export_config',
             JSON.stringify({
               configSnapshot: data.configSnapshot,
               sculptureConfigSnapshot: data.sculptureConfigSnapshot,

@@ -3,8 +3,8 @@ import { createClient } from '@/lib/supabase/server';
 import { MarketingConsentModal } from '@/components/auth/MarketingConsentModal';
 
 export const metadata = {
-  title: 'Email Preferences | Waymarker',
-  description: 'Set your email preferences for Waymarker',
+  title: 'Email Preferences | GridLine',
+  description: 'Set your email preferences for GridLine',
 };
 
 export default async function ConsentPage({

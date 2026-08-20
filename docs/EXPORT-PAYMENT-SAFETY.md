@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-This document tracks the export and payment flow safety system for Waymarker. The goal is to ensure that when a customer pays for a poster or sculpture export, they receive **exactly** what they purchased - not a stale, outdated, or incorrect design.
+This document tracks the export and payment flow safety system for GridLine. The goal is to ensure that when a customer pays for a poster or sculpture export, they receive **exactly** what they purchased - not a stale, outdated, or incorrect design.
 
 ---
 

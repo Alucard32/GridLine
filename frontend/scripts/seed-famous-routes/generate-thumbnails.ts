@@ -305,7 +305,7 @@ async function main(): Promise<void> {
   // Pre-set cookie consent in localStorage to prevent the banner from appearing
   await context.addInitScript(() => {
     localStorage.setItem(
-      'waymarker_cookie_consent',
+      'gridline_cookie_consent',
       JSON.stringify({
         version: '2',
         preferences: { necessary: true, analytics: false, marketing: false },

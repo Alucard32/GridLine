@@ -5,7 +5,7 @@ import { MyMapsList } from '@/components/profile/MyMapsList';
 import { UnifiedHeader } from '@/components/layout/UnifiedHeader';
 
 export const metadata = {
-  title: 'My Adventures | Waymarker',
+  title: 'My Adventures | GridLine',
   description: 'View and manage your adventure prints and journey sculptures',
 };
 

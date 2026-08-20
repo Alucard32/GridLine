@@ -12,7 +12,7 @@ interface CookiePreferences {
   marketing: boolean;
 }
 
-const COOKIE_CONSENT_KEY = 'waymarker_cookie_consent';
+const COOKIE_CONSENT_KEY = 'gridline_cookie_consent';
 const CONSENT_VERSION = '2'; // Bumped version to re-prompt users for marketing consent
 
 // Global function to show cookie preferences from anywhere
@@ -333,7 +333,7 @@ export function CookieConsent() {
                             className="overflow-hidden"
                           >
                             <div className="p-3 pt-0 text-xs text-stone-600 dark:text-stone-400">
-                              Help us make Waymarker better! Analytics let us see which features you love
+                              Help us make GridLine better! Analytics let us see which features you love
                               and what we can improve. We use PostHog — a privacy-friendly service that
                               doesn't sell your data.
                             </div>

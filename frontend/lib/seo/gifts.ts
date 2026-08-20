@@ -144,7 +144,7 @@ export const giftPages: GiftPageMetadata[] = [
       buttonText: 'Create a Marathon Gift',
     },
 
-    metaTitle: 'Marathon Finisher Gifts — Custom Route Posters | Waymarker',
+    metaTitle: 'Marathon Finisher Gifts — Custom Route Posters | GridLine',
     metaDescription:
       'Celebrate their 26.2 miles with a personalised marathon route poster. Import from Strava, choose from 11 styles. Digital download from EUR 12.',
     keywords: [
@@ -279,7 +279,7 @@ export const giftPages: GiftPageMetadata[] = [
       buttonText: 'Create a Trail Gift',
     },
 
-    metaTitle: 'Trail Runner & Hiker Gifts — Route Map Posters | Waymarker',
+    metaTitle: 'Trail Runner & Hiker Gifts — Route Map Posters | GridLine',
     metaDescription:
       'Custom trail and hiking route posters with 3D terrain. Import from Strava or GPX. 11 map styles. Digital download from EUR 12.',
     keywords: [
@@ -414,7 +414,7 @@ export const giftPages: GiftPageMetadata[] = [
       buttonText: 'Create a Cycling Gift',
     },
 
-    metaTitle: 'Gifts for Cyclists — Custom Route Map Posters | Waymarker',
+    metaTitle: 'Gifts for Cyclists — Custom Route Map Posters | GridLine',
     metaDescription:
       'Custom cycling route posters from Strava or GPX. Mont Ventoux, Alpe d\'Huez, or any ride. 11 styles. Digital download from EUR 12.',
     keywords: [
@@ -545,7 +545,7 @@ export const giftPages: GiftPageMetadata[] = [
       buttonText: 'Create a First Marathon Gift',
     },
 
-    metaTitle: 'First Marathon Gifts — Personalised Route Posters | Waymarker',
+    metaTitle: 'First Marathon Gifts — Personalised Route Posters | GridLine',
     metaDescription:
       'Celebrate their first marathon with a custom route poster. Add their finish time and Strava data. 11 styles. Digital download from EUR 12.',
     keywords: [
@@ -670,7 +670,7 @@ export const giftPages: GiftPageMetadata[] = [
       buttonText: 'Create a PB Gift',
     },
 
-    metaTitle: 'Personal Best Gifts — PB Route Posters | Waymarker',
+    metaTitle: 'Personal Best Gifts — PB Route Posters | GridLine',
     metaDescription:
       'Celebrate a running PB with a custom route poster. Import from Strava, display their time. 11 styles. Digital download from EUR 12.',
     keywords: [

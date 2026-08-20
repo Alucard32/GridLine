@@ -5,8 +5,8 @@ import { MapPin, ArrowLeft } from 'lucide-react';
 import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Waymarker',
-  description: 'Privacy Policy for Waymarker - How we collect, use, and protect your personal data in compliance with GDPR and Danish data protection laws.',
+  title: 'Privacy Policy | GridLine',
+  description: 'Privacy Policy for GridLine - How we collect, use, and protect your personal data in compliance with GDPR and Danish data protection laws.',
 };
 
 export default function PrivacyPolicyPage() {
@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
               <MapPin className="w-5 h-5 text-primary" />
             </div>
             <span className="font-display font-bold text-lg text-stone-900 dark:text-white">
-              Waymarker
+              GridLine
             </span>
           </Link>
           <Link
@@ -55,12 +55,12 @@ export default function PrivacyPolicyPage() {
             {/* Introduction */}
             <h2>1. Introduction</h2>
             <p>
-              Welcome to Waymarker. We are committed to protecting your personal data and respecting your privacy.
+              Welcome to GridLine. We are committed to protecting your personal data and respecting your privacy.
               This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you
               visit our website and use our services.
             </p>
             <p>
-              Waymarker is operated by <strong>Rosbech Media Consult ApS</strong> (CVR: 39337975), a company
+              GridLine is operated by <strong>Rosbech Media Consult ApS</strong> (CVR: 39337975), a company
               registered in Denmark. We comply with the General Data Protection Regulation (GDPR), the Danish
               Data Protection Act (Databeskyttelsesloven), and other applicable data protection laws.
             </p>
@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
               <p className="font-semibold text-stone-900 dark:text-white">Rosbech Media Consult ApS</p>
               <p className="text-stone-600 dark:text-stone-400">CVR: 39337975</p>
               <p className="text-stone-600 dark:text-stone-400">
-                Email: <a href="mailto:hello@waymarker.eu" className="text-primary hover:underline">hello@waymarker.eu</a>
+                Email: <a href="mailto:hello@gridline.eu" className="text-primary hover:underline">hello@gridline.eu</a>
               </p>
             </div>
             <p>
@@ -94,7 +94,7 @@ export default function PrivacyPolicyPage() {
 
             <h3>3.2 Connected Services Data</h3>
             <p>
-              When you connect your Strava account to Waymarker, we access:
+              When you connect your Strava account to GridLine, we access:
             </p>
             <ul>
               <li><strong>Strava athlete ID</strong> - To identify your account</li>
@@ -135,7 +135,7 @@ export default function PrivacyPolicyPage() {
             </ul>
 
             <h3>3.5 User-Generated Content</h3>
-            <p>When you use Waymarker, you may create and share:</p>
+            <p>When you use GridLine, you may create and share:</p>
             <ul>
               <li>Map designs and poster configurations</li>
               <li>Route data from GPX uploads</li>
@@ -189,7 +189,7 @@ export default function PrivacyPolicyPage() {
             <h2>5. How We Use Your Data</h2>
             <p>We use your personal data for the following purposes:</p>
             <ul>
-              <li><strong>Account Management:</strong> Creating and managing your Waymarker account</li>
+              <li><strong>Account Management:</strong> Creating and managing your GridLine account</li>
               <li><strong>Service Delivery:</strong> Providing map creation, Strava import, and export functionality</li>
               <li><strong>Communication:</strong> Sending transactional emails, responding to inquiries</li>
               <li><strong>Analytics:</strong> Understanding how our service is used to make improvements (with consent)</li>
@@ -285,7 +285,7 @@ export default function PrivacyPolicyPage() {
             </ul>
             <p>
               To exercise any of these rights, please contact us at{' '}
-              <a href="mailto:hello@waymarker.eu">hello@waymarker.eu</a>. We will respond to your request
+              <a href="mailto:hello@gridline.eu">hello@gridline.eu</a>. We will respond to your request
               within one month.
             </p>
 
@@ -355,7 +355,7 @@ export default function PrivacyPolicyPage() {
               <p className="font-semibold text-stone-900 dark:text-white">Rosbech Media Consult ApS</p>
               <p className="text-stone-600 dark:text-stone-400">CVR: 39337975</p>
               <p className="text-stone-600 dark:text-stone-400">
-                Email: <a href="mailto:hello@waymarker.eu" className="text-primary hover:underline">hello@waymarker.eu</a>
+                Email: <a href="mailto:hello@gridline.eu" className="text-primary hover:underline">hello@gridline.eu</a>
               </p>
             </div>
 

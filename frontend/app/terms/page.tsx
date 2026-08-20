@@ -5,8 +5,8 @@ import { MapPin, ArrowLeft, FileText, User, Shield, Palette, Globe, AlertTriangl
 import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Waymarker',
-  description: 'Terms of Service for Waymarker - Read our terms and conditions for using our map creation platform.',
+  title: 'Terms of Service | GridLine',
+  description: 'Terms of Service for GridLine - Read our terms and conditions for using our map creation platform.',
 };
 
 interface SectionProps {
@@ -46,7 +46,7 @@ export default function TermsOfServicePage() {
               <MapPin className="w-5 h-5 text-primary" />
             </div>
             <span className="font-display font-bold text-lg text-stone-900 dark:text-white">
-              Waymarker
+              GridLine
             </span>
           </Link>
           <Link
@@ -81,7 +81,7 @@ export default function TermsOfServicePage() {
           <div className="mb-8 p-5 bg-primary/5 dark:bg-primary/10 rounded-2xl border border-primary/20">
             <h3 className="font-semibold text-stone-900 dark:text-white mb-2">Quick Summary</h3>
             <p className="text-sm text-stone-600 dark:text-stone-400">
-              By using Waymarker, you agree to use our service responsibly, respect others' content,
+              By using GridLine, you agree to use our service responsibly, respect others' content,
               and understand that while we do our best to provide a great experience, the service is
               provided "as is". Read below for the full details.
             </p>
@@ -90,18 +90,18 @@ export default function TermsOfServicePage() {
           <div className="space-y-6">
             <Section icon={<FileText className="w-5 h-5" />} title="1. Introduction">
               <p>
-                Welcome to Waymarker. These Terms of Service ("Terms") govern your access to and use of the Waymarker
+                Welcome to GridLine. These Terms of Service ("Terms") govern your access to and use of the GridLine
                 platform, website, and services (collectively, the "Service"). By accessing or using the Service,
                 you agree to be bound by these Terms.
               </p>
               <p>
-                Waymarker is operated by <strong className="text-stone-900 dark:text-white">Rosbech Media Consult ApS</strong> (CVR: 39337975), a company
+                GridLine is operated by <strong className="text-stone-900 dark:text-white">Rosbech Media Consult ApS</strong> (CVR: 39337975), a company
                 registered in Denmark ("we", "us", or "our").
               </p>
             </Section>
 
             <Section icon={<Palette className="w-5 h-5" />} title="2. Service Description">
-              <p>Waymarker is a map creation platform that allows you to:</p>
+              <p>GridLine is a map creation platform that allows you to:</p>
               <ul className="list-disc list-inside space-y-1 ml-2">
                 <li>Create customized map posters from any location</li>
                 <li>Upload GPX files to visualize hiking, running, and cycling routes</li>
@@ -144,7 +144,7 @@ export default function TermsOfServicePage() {
                 </ul>
               </div>
               <p className="text-sm">
-                Waymarker also uses third-party map tile services including OpenFreeMap and MapTiler.
+                GridLine also uses third-party map tile services including OpenFreeMap and MapTiler.
                 Your use of these services through our platform is subject to their respective terms.
               </p>
             </Section>
@@ -167,7 +167,7 @@ export default function TermsOfServicePage() {
 
             <Section icon={<Palette className="w-5 h-5" />} title="6. User Content & Intellectual Property">
               <p>
-                When you create content on Waymarker, you retain ownership of your content. By publishing,
+                When you create content on GridLine, you retain ownership of your content. By publishing,
                 you grant us a license to display and promote your work.
               </p>
               <div className="bg-stone-50 dark:bg-stone-800 rounded-lg p-4 mt-4">
@@ -175,7 +175,7 @@ export default function TermsOfServicePage() {
                 <ul className="list-disc list-inside space-y-1 text-sm">
                   <li>Access and use the Service for personal, non-commercial purposes</li>
                   <li>Export and print maps you create for personal use</li>
-                  <li>Share your creations on social media with attribution to Waymarker</li>
+                  <li>Share your creations on social media with attribution to GridLine</li>
                 </ul>
               </div>
               <p className="mt-4 text-sm">

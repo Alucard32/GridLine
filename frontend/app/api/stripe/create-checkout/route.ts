@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
         ? process.env.STRIPE_REDIRECT_URL || 'http://localhost:3000'
         : process.env.NEXT_PUBLIC_SITE_URL ||
           process.env.VERCEL_URL ||
-          'https://waymarker.eu';
+          'https://gridline.eu';
 
     // Get user if authenticated (optional for guest checkout)
     const supabase = await createClient();

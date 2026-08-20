@@ -31,20 +31,20 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Waymarker | Turn Your Adventures Into Art",
+  title: "GridLine | Turn Your Adventures Into Art",
   description: "Create stunning adventure prints and journey sculptures from your hiking trails, runs, and travels",
   icons: {
     icon: "/icon.svg",
   },
   openGraph: {
-    title: "Waymarker | Turn Your Adventures Into Art",
+    title: "GridLine | Turn Your Adventures Into Art",
     description: "Create stunning adventure prints and journey sculptures from your hiking trails, runs, and travels",
     images: ["/hero.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Waymarker | Turn Your Adventures Into Art",
+    title: "GridLine | Turn Your Adventures Into Art",
     description: "Create stunning adventure prints and journey sculptures from your hiking trails, runs, and travels",
     images: ["/hero.jpg"],
   },

@@ -1,5 +1,5 @@
 /**
- * Stripe product configuration for Waymarker exports
+ * Stripe product configuration for GridLine exports
  *
  * Products:
  * - Poster exports (digital PNG downloads): €12-18

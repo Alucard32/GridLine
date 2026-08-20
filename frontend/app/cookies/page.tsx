@@ -6,8 +6,8 @@ import { Footer } from '@/components/layout/Footer';
 import { CookiePreferencesButton } from './CookiePreferencesButton';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | Waymarker',
-  description: 'Cookie Policy for Waymarker - Learn about how we use cookies and how to manage your preferences.',
+  title: 'Cookie Policy | GridLine',
+  description: 'Cookie Policy for GridLine - Learn about how we use cookies and how to manage your preferences.',
 };
 
 interface SectionProps {
@@ -75,7 +75,7 @@ export default function CookiePolicyPage() {
 
   const essentialCookies = [
     { name: 'sb-*-auth-token', provider: 'Supabase', purpose: 'Authentication session management', expiration: 'Session / 1 year' },
-    { name: 'waymarker_cookie_consent', provider: 'Waymarker', purpose: 'Stores your cookie consent preferences', expiration: 'Persistent' },
+    { name: 'gridline_cookie_consent', provider: 'GridLine', purpose: 'Stores your cookie consent preferences', expiration: 'Persistent' },
   ];
 
   const analyticsCookies = [
@@ -93,7 +93,7 @@ export default function CookiePolicyPage() {
               <MapPin className="w-5 h-5 text-primary" />
             </div>
             <span className="font-display font-bold text-lg text-stone-900 dark:text-white">
-              Waymarker
+              GridLine
             </span>
           </Link>
           <Link
@@ -128,7 +128,7 @@ export default function CookiePolicyPage() {
           <div className="mb-8 p-5 bg-primary/5 dark:bg-primary/10 rounded-2xl border border-primary/20">
             <h3 className="font-semibold text-stone-900 dark:text-white mb-2">Quick Summary</h3>
             <p className="text-sm text-stone-600 dark:text-stone-400 mb-4">
-              We use essential cookies to make Waymarker work. With your consent, we also use
+              We use essential cookies to make GridLine work. With your consent, we also use
               analytics cookies to understand how you use our site and improve your experience.
               You can change your preferences anytime.
             </p>
@@ -149,7 +149,7 @@ export default function CookiePolicyPage() {
             </Section>
 
             <Section icon={<BarChart3 className="w-5 h-5" />} title="2. How We Use Cookies">
-              <p>Waymarker uses cookies for the following purposes:</p>
+              <p>GridLine uses cookies for the following purposes:</p>
               <ul className="list-disc list-inside space-y-1 ml-2">
                 <li><strong className="text-stone-900 dark:text-white">Essential functionality:</strong> To enable core features like authentication and security</li>
                 <li><strong className="text-stone-900 dark:text-white">Analytics:</strong> To understand how visitors interact with our website (with your consent)</li>

@@ -10,7 +10,7 @@ import type { PosterConfig } from '@/types/poster';
 import { encodeConfig } from '@/lib/config/url-state';
 
 // Session storage key for preserving route data during auth
-const DRAFT_ROUTE_KEY = 'waymarker_draft_route';
+const DRAFT_ROUTE_KEY = 'gridline_draft_route';
 
 interface SaveButtonProps {
   onSave: (name: string) => Promise<void>;

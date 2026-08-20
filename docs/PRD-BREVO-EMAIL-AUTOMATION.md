@@ -1,7 +1,7 @@
 # Brevo Email Automation - Product Requirements Document
 
 > **Transactional + marketing email automation for user lifecycle management**
-> Personal, down-to-earth communication from "Jonas from Waymarker"
+> Personal, down-to-earth communication from "Jonas from GridLine"
 
 **Created**: 2026-01-16
 **Updated**: 2026-01-19
@@ -50,7 +50,7 @@
 
 ## Executive Summary
 
-This PRD defines the email automation strategy for Waymarker using Brevo. The goal is to create a personal, non-corporate email experience that:
+This PRD defines the email automation strategy for GridLine using Brevo. The goal is to create a personal, non-corporate email experience that:
 
 1. **Welcomes new users** with a warm, personal onboarding sequence
 2. **Delivers purchases** instantly with download links and gratitude
@@ -92,8 +92,8 @@ npm install @getbrevo/brevo
 ```bash
 # Brevo (Email)
 BREVO_API_KEY=xkeysib-...        # Your single API key - used for everything
-BREVO_SENDER_EMAIL=hello@waymarker.eu
-BREVO_SENDER_NAME=Jonas from Waymarker
+BREVO_SENDER_EMAIL=hello@gridline.eu
+BREVO_SENDER_NAME=Jonas from GridLine
 ```
 
 **Note**: Brevo uses ONE API key for all operations (transactional emails, contact management, AND event tracking). The event tracking endpoint uses an `ma-key` header, but you pass your regular API key there too.
@@ -153,7 +153,7 @@ const emailAPI = new TransactionalEmailsApi();
 emailAPI.authentications.apiKey.apiKey = process.env.BREVO_API_KEY!;
 
 const message = new SendSmtpEmail();
-message.subject = "Welcome to Waymarker!";
+message.subject = "Welcome to GridLine!";
 message.htmlContent = "<html>...</html>";
 message.sender = {
   name: process.env.BREVO_SENDER_NAME,
@@ -253,7 +253,7 @@ await trackBrevoEvent(
     amount: 999,
     productName: "Medium Poster (18x24\")",
     productType: "poster",
-    downloadLink: "https://waymarker.eu/download/abc123",
+    downloadLink: "https://gridline.eu/download/abc123",
     firstName: "Jonas",
   }
 );
@@ -266,7 +266,7 @@ curl --request POST \
   --header "accept: application/json" \
   --header "content-type: application/json" \
   --header "api-key: YOUR_API_KEY" \
-  --data '{"event_name":"purchase_completed","identifiers":{"email_id":"user@example.com"},"contact_properties":{"FIRSTNAME":"Jonas","HAS_PURCHASED":true},"event_properties":{"product":"poster_medium","amount":999,"productName":"Medium Poster","productType":"poster","downloadLink":"https://waymarker.eu/test","firstName":"Jonas"}}'
+  --data '{"event_name":"purchase_completed","identifiers":{"email_id":"user@example.com"},"contact_properties":{"FIRSTNAME":"Jonas","HAS_PURCHASED":true},"event_properties":{"product":"poster_medium","amount":999,"productName":"Medium Poster","productType":"poster","downloadLink":"https://gridline.eu/test","firstName":"Jonas"}}'
 ```
 
 ### 4. Update Contact Attributes
@@ -297,15 +297,15 @@ await contactsApi.updateContact("user@example.com", update);
 
 #### Email 1: Welcome (Immediate)
 
-**Subject**: Welcome to Waymarker - let's turn your adventures into art
+**Subject**: Welcome to GridLine - let's turn your adventures into art
 
 **Content**:
 ```
 Hey!
 
-Jonas here, founder of Waymarker.
+Jonas here, founder of GridLine.
 
-I'm stoked you signed up! I built Waymarker because I wanted a way to turn
+I'm stoked you signed up! I built GridLine because I wanted a way to turn
 my running and cycling routes into something I could actually hang on my wall -
 not just another forgotten GPX file on Strava.
 
@@ -391,16 +391,16 @@ Jonas
 
 #### Email 1: Order Confirmation & Download (Immediate)
 
-**Subject**: Your Waymarker download is ready
+**Subject**: Your GridLine download is ready
 
 **Content**:
 ```
 Hey {{params.firstName}}!
 
 Your {{params.productName}} is ready to download. Thank you so much for
-supporting Waymarker - it means a lot.
+supporting GridLine - it means a lot.
 
-→ [Go to My Downloads](https://waymarker.eu/account)
+→ [Go to My Downloads](https://gridline.eu/account)
 
 Your file is available in "My Downloads" on your account page.
 You can download it up to 5 times.
@@ -417,7 +417,7 @@ For 3D Sculptures:
 • Recommended: 0.2mm layer height, 20% infill
 • Or use a service like Shapeways or Craftcloud
 
-If you post it on Instagram or share it anywhere, tag @waymarker.eu - I'd
+If you post it on Instagram or share it anywhere, tag @gridline.eu - I'd
 love to see it!
 
 Thanks again,
@@ -439,13 +439,13 @@ Just checking in - how did your {{params.productType}} turn out?
 
 If you're happy with it, I'd love if you could:
 
-• **Share it** - Tag @waymarker.eu on Instagram or share in your running/
+• **Share it** - Tag @gridline.eu on Instagram or share in your running/
   cycling group. Helps other adventurers find us!
 
 • **Leave a review** - Reply to this email with a quick thought. I feature
   the best ones on the site (with your permission).
 
-• **Tell a friend** - Know someone who'd love this? Send them to waymarker.eu
+• **Tell a friend** - Know someone who'd love this? Send them to gridline.eu
 
 And if something didn't work out, let me know - I want to make it right.
 
@@ -470,7 +470,7 @@ Jonas
 ```
 Hey!
 
-I noticed you signed up for Waymarker but haven't created a map yet.
+I noticed you signed up for GridLine but haven't created a map yet.
 No pressure at all - just wanted to make sure everything's working okay.
 
 If you're not sure where to start:
@@ -504,7 +504,7 @@ Jonas
 ```
 Hey!
 
-It's been a while since you visited Waymarker. Wanted to share a few
+It's been a while since you visited GridLine. Wanted to share a few
 things we've added recently:
 
 • **3D Journey Sculptures** - Turn your routes into 3D-printable art
@@ -513,7 +513,7 @@ things we've added recently:
 
 [Check it out →]
 
-If Waymarker isn't what you're looking for, no worries at all - you can
+If GridLine isn't what you're looking for, no worries at all - you can
 unsubscribe below and I won't bother you again.
 
 But if you're still into the idea of turning adventures into wall art,
@@ -533,7 +533,7 @@ Jonas
 ```
 Hey,
 
-I'll keep this short - you signed up for Waymarker a while back but
+I'll keep this short - you signed up for GridLine a while back but
 haven't been around lately.
 
 If you're not interested anymore, totally cool. You can unsubscribe
@@ -542,12 +542,12 @@ below and that's that.
 But if you ever want to turn a hike, run, or ride into something you
 can hang on your wall, we'll be here.
 
-[Visit Waymarker →]
+[Visit GridLine →]
 
 Take care,
 Jonas
 
-P.S. - If you have feedback on why Waymarker wasn't for you, I'd
+P.S. - If you have feedback on why GridLine wasn't for you, I'd
 genuinely love to hear it. Just hit reply.
 ```
 
@@ -811,8 +811,8 @@ transactionalApi.authentications.apiKey.apiKey = apiKey || '';
 
 // Sender config
 export const brevoSender = {
-  name: process.env.BREVO_SENDER_NAME || 'Jonas from Waymarker',
-  email: process.env.BREVO_SENDER_EMAIL || 'hello@waymarker.eu',
+  name: process.env.BREVO_SENDER_NAME || 'Jonas from GridLine',
+  email: process.env.BREVO_SENDER_EMAIL || 'hello@gridline.eu',
 };
 ```
 
@@ -970,7 +970,7 @@ export async function updateBrevoContact(
 
 This section documents how to create on-brand HTML email templates for Brevo.
 
-### Waymarker Brand Colors
+### GridLine Brand Colors
 
 | Color | Hex | Usage |
 |-------|-----|-------|
@@ -1083,7 +1083,7 @@ Use these placeholders in your HTML:
 |----------|--------|---------|
 | `{{ contact.FIRSTNAME }}` | Contact attribute | "Jonas" |
 | `{{ contact.EMAIL }}` | Contact email | "jonas@example.com" |
-| `{{ event.downloadLink }}` | Event property | "https://waymarker.eu/download/abc" |
+| `{{ event.downloadLink }}` | Event property | "https://gridline.eu/download/abc" |
 | `{{ event.productName }}` | Event property | "Medium Poster (18×24\")" |
 | `{{ event.productType }}` | Event property | "poster" or "sculpture" |
 | `{{ unsubscribe }}` | Auto-generated | Unsubscribe URL |
@@ -1097,7 +1097,7 @@ Use these placeholders in your HTML:
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Welcome to Waymarker</title>
+  <title>Welcome to GridLine</title>
   <!--[if mso]>
   <style type="text/css">
     table {border-collapse: collapse;}
@@ -1125,7 +1125,7 @@ Use these placeholders in your HTML:
             <td align="center" style="background-color: #2D5A3D; padding: 40px 48px 32px 48px; border-radius: 16px 16px 0 0;">
 
               <!-- Logo -->
-              <img src="https://img.mailinblue.com/10499192/images/content_library/original/696a74be55ba1aec1a45ad4b.png" width="48" height="48" alt="Waymarker" style="display: block; margin: 0 auto 20px auto;">
+              <img src="https://img.mailinblue.com/10499192/images/content_library/original/696a74be55ba1aec1a45ad4b.png" width="48" height="48" alt="GridLine" style="display: block; margin: 0 auto 20px auto;">
 
               <!-- Welcome badge -->
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin-bottom: 16px;">
@@ -1150,7 +1150,7 @@ Use these placeholders in your HTML:
 
               <!-- Intro -->
               <p style="color: #44403c; font-size: 16px; line-height: 1.7; margin: 0 0 20px 0;">
-                Jonas here, founder of Waymarker.
+                Jonas here, founder of GridLine.
               </p>
 
               <p style="color: #44403c; font-size: 16px; line-height: 1.7; margin: 0 0 20px 0;">
@@ -1162,7 +1162,7 @@ Use these placeholders in your HTML:
               </p>
 
               <p style="color: #44403c; font-size: 16px; line-height: 1.7; margin: 0 0 32px 0;">
-                I wanted those routes on my wall. Something I'd actually <em>look at</em> every day. So I built Waymarker to make it stupidly easy.
+                I wanted those routes on my wall. Something I'd actually <em>look at</em> every day. So I built GridLine to make it stupidly easy.
               </p>
 
               <!-- Section header -->
@@ -1234,7 +1234,7 @@ Use these placeholders in your HTML:
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                       <tr>
                         <td style="border-radius: 12px; background-color: #D4763A;">
-                          <a href="https://waymarker.eu/create" style="display: inline-block; padding: 16px 36px; color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 12px;">
+                          <a href="https://gridline.eu/create" style="display: inline-block; padding: 16px 36px; color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 12px;">
                             Create Your First Map &rarr;
                           </a>
                         </td>
@@ -1268,12 +1268,12 @@ Use these placeholders in your HTML:
           <tr>
             <td style="background-color: #F5F5F4; padding: 24px 48px; text-align: center; border-radius: 0 0 16px 16px;">
               <p style="color: #A8A29E; font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.5; margin: 0 0 8px 0;">
-                You signed up at waymarker.eu
+                You signed up at gridline.eu
               </p>
               <p style="color: #A8A29E; font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.5; margin: 0;">
                 <a href="{{ unsubscribe }}" style="color: #78716c; text-decoration: underline;">Unsubscribe</a>
                 &nbsp;|&nbsp;
-                <a href="https://waymarker.eu/privacy" style="color: #78716c; text-decoration: underline;">Privacy</a>
+                <a href="https://gridline.eu/privacy" style="color: #78716c; text-decoration: underline;">Privacy</a>
               </p>
             </td>
           </tr>
@@ -1335,7 +1335,7 @@ When creating new emails, follow this checklist:
 <table role="presentation" cellspacing="0" cellpadding="0" border="0">
   <tr>
     <td style="border-radius: 12px; background-color: #D4763A;">
-      <a href="https://waymarker.eu/create" style="display: inline-block; padding: 16px 36px; color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 12px;">
+      <a href="https://gridline.eu/create" style="display: inline-block; padding: 16px 36px; color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 12px;">
         Button Text &rarr;
       </a>
     </td>

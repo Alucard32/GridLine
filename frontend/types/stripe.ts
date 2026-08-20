@@ -1,5 +1,5 @@
 /**
- * Stripe-related type definitions for Waymarker
+ * Stripe-related type definitions for GridLine
  */
 
 import type { ExportProduct } from '@/lib/stripe/products';

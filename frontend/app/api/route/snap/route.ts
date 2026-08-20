@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
     const result = await enqueue(async () => {
       const response = await fetch(osrmUrl, {
         headers: {
-          'User-Agent': 'Waymarker/1.0 (https://waymarker.eu)',
+          'User-Agent': 'GridLine/1.0 (https://gridline.eu)',
         },
       });
 

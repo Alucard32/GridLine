@@ -53,10 +53,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: guide.metaTitle,
       description: guide.metaDescription,
       type: 'article',
-      url: `https://waymarker.eu/guide/${guide.slug}`,
+      url: `https://gridline.eu/guide/${guide.slug}`,
     },
     alternates: {
-      canonical: `https://waymarker.eu/guide/${guide.slug}`,
+      canonical: `https://gridline.eu/guide/${guide.slug}`,
     },
   };
 }
@@ -97,7 +97,7 @@ export default async function GuidePage({ params }: PageProps) {
     })),
     tool: [
       { '@type': 'HowToTool', name: 'Web browser' },
-      { '@type': 'HowToTool', name: 'Waymarker editor (waymarker.eu/create)' },
+      { '@type': 'HowToTool', name: 'GridLine editor (gridline.eu/create)' },
     ],
   };
 
@@ -109,19 +109,19 @@ export default async function GuidePage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://waymarker.eu',
+        item: 'https://gridline.eu',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Guides',
-        item: 'https://waymarker.eu/guide',
+        item: 'https://gridline.eu/guide',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: guide.title,
-        item: `https://waymarker.eu/guide/${guide.slug}`,
+        item: `https://gridline.eu/guide/${guide.slug}`,
       },
     ],
   };

@@ -50,8 +50,8 @@ function setToCache(key: string, payload: unknown) {
 async function fetchFromNominatim(endpoint: 'search' | 'reverse', params: URLSearchParams) {
   const userAgent =
     process.env.NOMINATIM_USER_AGENT?.trim() ||
-    process.env.VERCEL_URL?.trim()?.replace(/^/, 'waymarker/') ||
-    'waymarker (dev)';
+    process.env.VERCEL_URL?.trim()?.replace(/^/, 'gridline/') ||
+    'gridline (dev)';
 
   const fromEmail = process.env.NOMINATIM_FROM_EMAIL?.trim();
 

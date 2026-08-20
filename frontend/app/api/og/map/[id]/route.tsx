@@ -293,7 +293,7 @@ export async function GET(
                   color: '#2D5A3D',
                 }}
               >
-                Waymarker
+                GridLine
               </span>
             </div>
             <span
@@ -302,7 +302,7 @@ export async function GET(
                 color: '#666',
               }}
             >
-              waymarker.eu
+              gridline.eu
             </span>
           </div>
         </div>

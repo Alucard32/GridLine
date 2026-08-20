@@ -1,4 +1,4 @@
-# Waymarker - Development Context
+# GridLine - Development Context
 
 > **Single source of truth** for AI development context.
 > - See [STATUS.md](STATUS.md) for completed features & history
@@ -13,7 +13,7 @@
 
 ## Development Workflow Rules
 
-**CRITICAL**: Follow these rules when developing features for Waymarker.
+**CRITICAL**: Follow these rules when developing features for GridLine.
 
 ### Git & Commits
 
@@ -50,7 +50,7 @@
 
 ## Quick Reference
 
-**Brand**: Waymarker (waymarker.eu)
+**Brand**: GridLine (gridline.eu)
 **Phase**: Core Features ✅ Complete — SEO Landing Pages Phase 1-2 ✅ Complete
 **Dev Server**: http://localhost:3000
 

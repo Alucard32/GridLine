@@ -197,7 +197,7 @@ function sendBrevoEvent(
   const productName = productNames[product] || product;
 
   // Build download URL
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://waymarker.eu';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gridline.eu';
   const downloadLink = `${baseUrl}/api/export/download?token=${order.download_token}`;
 
   logger.info('Tracking Brevo purchase event:', { email, productName, downloadLink });

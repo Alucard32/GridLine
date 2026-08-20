@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Mountain } from 'lucide-react';
 
 export const metadata = {
-  title: 'Sign Up | Waymarker',
+  title: 'Sign Up | GridLine',
   description: 'Create an account to save and share your adventure keepsakes',
 };
 
@@ -67,7 +67,7 @@ export default async function SignupPage({
               Start Your Journey
             </h1>
             <p className="text-muted-foreground">
-              Join Waymarker to save and share your adventure keepsakes
+              Join GridLine to save and share your adventure keepsakes
             </p>
           </div>
 

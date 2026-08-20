@@ -3,18 +3,18 @@
 import { cn } from '@/lib/utils';
 import { useId } from 'react';
 
-interface WaymarkerLogoProps {
+interface GridLineLogoProps {
   size?: 'xs' | 'sm' | 'md' | 'lg';
   className?: string;
   showText?: boolean;
 }
 
 /**
- * Waymarker Mountain Logo
+ * GridLine Mountain Logo
  * Stylized mountain peak with trail path
  * Forest green to sunset orange gradient
  */
-export function WaymarkerLogo({ size = 'md', className, showText = false }: WaymarkerLogoProps) {
+export function GridLineLogo({ size = 'md', className, showText = false }: GridLineLogoProps) {
   // Generate unique IDs for gradients to avoid conflicts when multiple logos are rendered
   const uniqueId = useId();
   const mountainGradientId = `mountain-gradient-${uniqueId}`;
@@ -41,7 +41,7 @@ export function WaymarkerLogo({ size = 'md', className, showText = false }: Waym
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={cn(sizeClasses[size], 'flex-shrink-0')}
-        aria-label="Waymarker logo"
+        aria-label="GridLine logo"
       >
         <defs>
           {/* Forest to sunset gradient - using hex for browser compatibility */}
@@ -90,7 +90,7 @@ export function WaymarkerLogo({ size = 'md', className, showText = false }: Waym
 
       {showText && (
         <span className={cn('font-bold text-foreground font-display', textSizeClasses[size])}>
-          Waymarker
+          GridLine
         </span>
       )}
     </div>

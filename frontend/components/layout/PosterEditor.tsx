@@ -28,7 +28,7 @@ import { ExploreDrawer } from './ExploreDrawer';
 import { ErrorToastContainer } from '@/components/ui/ErrorToast';
 import { useErrorHandler } from '@/hooks/useErrorHandler';
 import Link from 'next/link';
-import { WaymarkerLogo } from '@/components/ui/WaymarkerLogo';
+import { GridLineLogo } from '@/components/ui/GridLineLogo';
 import type MapLibreGL from 'maplibre-gl';
 import { getMapById, getFeaturedRouteBySlug, publishMap } from '@/lib/actions/maps';
 import { isConfigEqual, cloneConfig } from '@/lib/utils/configComparison';
@@ -268,7 +268,7 @@ export function PosterEditor() {
         if (hasPaidSnapshot === 'true' && autoExport === 'true') {
           console.log('[PAID DOWNLOAD] Attempting to load config from sessionStorage');
           try {
-            const storedData = sessionStorage.getItem('waymarker_paid_export_config');
+            const storedData = sessionStorage.getItem('gridline_paid_export_config');
             if (storedData) {
               const parsed = JSON.parse(storedData);
               console.log('[PAID DOWNLOAD] Found stored config, orderId:', parsed.orderId, 'timestamp:', parsed.timestamp);
@@ -286,7 +286,7 @@ export function PosterEditor() {
                 console.warn('[PAID DOWNLOAD] Stored config is too old, age:', Date.now() - parsed.timestamp, 'ms');
               }
               // Clear the snapshot after use
-              sessionStorage.removeItem('waymarker_paid_export_config');
+              sessionStorage.removeItem('gridline_paid_export_config');
             } else {
               console.warn('[PAID DOWNLOAD] No config found in sessionStorage');
             }
@@ -473,7 +473,7 @@ export function PosterEditor() {
   // This handles the case where user clicks Save without being logged in,
   // then logs in and is redirected back - the route data is preserved in sessionStorage
   // because routes are too large to encode in the URL
-  const DRAFT_ROUTE_KEY = 'waymarker_draft_route';
+  const DRAFT_ROUTE_KEY = 'gridline_draft_route';
   const draftRouteProcessedRef = useRef(false);
 
   useEffect(() => {
@@ -808,7 +808,7 @@ export function PosterEditor() {
       {/* Mobile Header */}
       <div className="md:hidden h-14 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-4 z-40 shadow-sm">
         <Link href="/create">
-          <WaymarkerLogo size="md" showText />
+          <GridLineLogo size="md" showText />
         </Link>
         <div className="flex items-center gap-2">
           <button

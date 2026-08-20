@@ -13,7 +13,7 @@
 
 ## Executive Summary
 
-This PRD defines a system to programmatically seed the Waymarker database with famous, recognizable routes that:
+This PRD defines a system to programmatically seed the GridLine database with famous, recognizable routes that:
 
 1. **Provide instant value** - Users discover beautiful pre-made posters of routes they know
 2. **Power SEO pages** - Each route becomes a landing page with real content
@@ -811,7 +811,7 @@ npm run seed:thumbnails -- --limit=10
 
 ### Key Implementation Features
 
-1. **Cookie Consent Bypass**: Pre-sets localStorage `waymarker_cookie_consent` to prevent banner appearing in screenshots
+1. **Cookie Consent Bypass**: Pre-sets localStorage `gridline_cookie_consent` to prevent banner appearing in screenshots
 
 2. **UI Overlay Hiding**: Hides all UI overlays before screenshot:
    - `.z-30, .z-20` - Custom overlays (zoom indicator, loading indicator)

@@ -30,8 +30,8 @@ if (apiKey) {
 
 // Sender config from environment
 export const brevoSender = {
-  name: process.env.BREVO_SENDER_NAME || 'Jonas from Waymarker',
-  email: process.env.BREVO_SENDER_EMAIL || 'hello@waymarker.eu',
+  name: process.env.BREVO_SENDER_NAME || 'Jonas from GridLine',
+  email: process.env.BREVO_SENDER_EMAIL || 'hello@gridline.eu',
 };
 
 // Check if Brevo is configured

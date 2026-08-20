@@ -21,8 +21,8 @@ ADMIN_PASSWORD=your_secure_admin_password
 
 # Brevo Email (transactional + marketing emails)
 BREVO_API_KEY=your_brevo_api_key
-BREVO_SENDER_EMAIL=hello@waymarker.eu
-BREVO_SENDER_NAME=Jonas from Waymarker
+BREVO_SENDER_EMAIL=hello@gridline.eu
+BREVO_SENDER_NAME=Jonas from GridLine
 ```
 
 ## Getting Started

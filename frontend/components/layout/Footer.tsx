@@ -18,7 +18,7 @@ export function Footer() {
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
               <span className="font-display font-bold text-lg text-stone-900 dark:text-white">
-                Waymarker
+                GridLine
               </span>
             </Link>
             <p className="mt-3 text-sm text-stone-600 dark:text-stone-400">
@@ -139,7 +139,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-stone-200 dark:border-stone-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-stone-500 dark:text-stone-500">
-              © {currentYear} Waymarker. All rights reserved.
+              © {currentYear} GridLine. All rights reserved.
             </p>
             <div className="flex items-center gap-2 text-xs text-stone-400 dark:text-stone-600">
               <span>🇩🇰</span>

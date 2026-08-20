@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: MapDetailPageProps): Promise<
 
   if (!mapData) {
     return {
-      title: 'Map Not Found | Waymarker',
+      title: 'Map Not Found | GridLine',
     };
   }
 
@@ -57,19 +57,19 @@ export async function generateMetadata({ params }: MapDetailPageProps): Promise<
   const productType = map.product_type === 'sculpture' ? 'Journey Sculpture' : 'Adventure Print';
   const description = map.subtitle
     ? `${map.subtitle} - A ${productType} by ${authorName}`
-    : `A ${productType} by ${authorName} on Waymarker`;
+    : `A ${productType} by ${authorName} on GridLine`;
 
   // Use the OG image API route
-  const ogImageUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://waymarker.eu'}/api/og/map/${id}`;
+  const ogImageUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://gridline.eu'}/api/og/map/${id}`;
 
   return {
-    title: `${map.title} | Waymarker`,
+    title: `${map.title} | GridLine`,
     description,
     openGraph: {
       title: map.title,
       description,
       type: 'article',
-      siteName: 'Waymarker',
+      siteName: 'GridLine',
       images: [
         {
           url: ogImageUrl,

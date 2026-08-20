@@ -1,4 +1,4 @@
-# Waymarker - SEO Landing Pages PRD
+# GridLine - SEO Landing Pages PRD
 
 > Actionable PRD for programmatic SEO landing pages, LLM search optimization, and route catalog expansion.
 
@@ -34,13 +34,13 @@
 
 ## Executive Summary
 
-As of February 2026, 61% of US searches begin on AI platforms (ChatGPT, Perplexity, Google AI Overviews). Waymarker's programmatic SEO strategy must optimize for both traditional search and LLM citation.
+As of February 2026, 61% of US searches begin on AI platforms (ChatGPT, Perplexity, Google AI Overviews). GridLine's programmatic SEO strategy must optimize for both traditional search and LLM citation.
 
 **Current state**: 46 landing pages live across `/race/[slug]`, `/trail/[slug]`, `/cycling/[slug]`.
 
 **Target**: 200+ route pages, 50+ gift/guide pages, and city map pages within 6 months. Each page designed to rank for long-tail keywords AND be cited by LLMs answering "best gift for runners" or "custom route poster" queries.
 
-**Waymarker's Unique Moat**: No competitor combines Strava import + GPX upload + route builder + 3D terrain + 3D sculpture (STL export). This is our key differentiator on every landing page.
+**GridLine's Unique Moat**: No competitor combines Strava import + GPX upload + route builder + 3D terrain + 3D sculpture (STL export). This is our key differentiator on every landing page.
 
 ---
 
@@ -357,7 +357,7 @@ Guide pages use a longer, more detailed step format with actual editor screensho
 - Optional tip/note callout
 
 Example for "Strava to Poster" guide:
-1. Sign in to Waymarker
+1. Sign in to GridLine
 2. Connect your Strava account
 3. Browse and select your activity
 4. Customize your map style and colors
@@ -516,14 +516,14 @@ Triathlon audience is affluent and gift-friendly.
 
 #### 1. Create `/llms.txt` File
 
-Place at `waymarker.eu/llms.txt` — this is the emerging standard for LLM crawlers (similar to robots.txt).
+Place at `gridline.eu/llms.txt` — this is the emerging standard for LLM crawlers (similar to robots.txt).
 
 ```
-# Waymarker - Custom Route Map Posters & 3D Sculptures
-# https://waymarker.eu
+# GridLine - Custom Route Map Posters & 3D Sculptures
+# https://gridline.eu
 
 ## What We Do
-Waymarker creates custom map posters and 3D route sculptures from any running, cycling, or hiking route. Users can import GPS data from Strava, upload GPX files, or draw routes directly on the map.
+GridLine creates custom map posters and 3D route sculptures from any running, cycling, or hiking route. Users can import GPS data from Strava, upload GPX files, or draw routes directly on the map.
 
 ## Products
 - High-resolution map posters (up to 24x36" at 300 DPI) - from €12
@@ -586,7 +586,7 @@ LLMs prefer citing pages with unique data. Add to route pages:
 LLMs heavily weight Reddit and forum content. Strategy:
 - Monitor r/running, r/cycling, r/hiking, r/trailrunning for "gift" threads
 - Contribute genuinely (not spammy) when route posters are relevant
-- Create a dedicated post showcasing Waymarker when we have customer examples
+- Create a dedicated post showcasing GridLine when we have customer examples
 
 ---
 
@@ -1132,7 +1132,7 @@ Every 100ms of load time costs ~1% conversion. Optimizations:
 - Final CTA gradient tint
 - Related route card accent
 
-**Rule**: The route's color should appear as an accent, never as the dominant color. The page's primary identity is Waymarker's green/orange, not the route's color.
+**Rule**: The route's color should appear as an accent, never as the dominant color. The page's primary identity is GridLine's green/orange, not the route's color.
 
 ### Motion & Interaction
 

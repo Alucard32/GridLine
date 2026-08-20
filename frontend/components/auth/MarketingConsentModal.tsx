@@ -58,7 +58,7 @@ export function MarketingConsentModal({ email, redirectTo }: MarketingConsentMod
 
           <div className="text-center mb-8">
             <h1 className="text-2xl font-display font-bold text-foreground mb-2">
-              Welcome to Waymarker!
+              Welcome to GridLine!
             </h1>
             <p className="text-muted-foreground">
               One quick thing before you start creating

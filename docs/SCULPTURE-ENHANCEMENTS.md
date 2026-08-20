@@ -1,4 +1,4 @@
-# Waymarker 3D Sculpture Enhancement Ideas
+# GridLine 3D Sculpture Enhancement Ideas
 
 > **Session Date**: January 2026
 > **Status**: Ideas documented for future implementation
@@ -23,7 +23,7 @@
 
 ## Competitive Gaps Identified
 
-| Competitor Feature | Waymarker Status | Priority |
+| Competitor Feature | GridLine Status | Priority |
 |--------------------|------------------|----------|
 | Built-in display stand | Missing | High |
 | Multiple route colors | Missing | High |

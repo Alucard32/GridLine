@@ -46,7 +46,7 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  /* Waymarker Outdoor Theme - Additional Colors */
+  /* GridLine Outdoor Theme - Additional Colors */
   --color-forest: var(--forest);
   --color-forest-light: var(--forest-light);
   --color-forest-dark: var(--forest-dark);
@@ -62,7 +62,7 @@
 :root {
   --radius: 0.625rem;
 
-  /* Waymarker Outdoor Color Palette */
+  /* GridLine Outdoor Color Palette */
   /* Primary - Forest Pine Green */
   --forest: oklch(0.45 0.12 145);           /* #2D5A3D - Deep forest green */
   --forest-light: oklch(0.55 0.10 145);     /* #3D7A4D - Lighter green */

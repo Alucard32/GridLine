@@ -72,7 +72,7 @@ export const getFeaturesByCategory = (category: FeatureCategory): ComingSoonFeat
 /**
  * localStorage key for storing user's feature votes
  */
-export const FEATURE_VOTES_STORAGE_KEY = 'waymarker_feature_votes';
+export const FEATURE_VOTES_STORAGE_KEY = 'gridline_feature_votes';
 
 /**
  * Get user's voted feature keys from localStorage

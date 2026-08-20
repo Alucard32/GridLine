@@ -92,7 +92,7 @@ async function drawWatermark(
   const height = WATERMARK_HEIGHT;
 
   // Background pill for watermark
-  const text = 'waymarker.eu';
+  const text = 'gridline.eu';
   ctx.font = `600 ${height * 0.55}px system-ui, -apple-system, sans-serif`;
   const textWidth = ctx.measureText(text).width;
   const pillWidth = textWidth + height + padding; // Extra space for logo
@@ -245,7 +245,7 @@ async function drawWatermarkScaled(
   const height = Math.max(24, Math.round(WATERMARK_HEIGHT * scale));
 
   // Background pill for watermark
-  const text = 'waymarker.eu';
+  const text = 'gridline.eu';
   ctx.font = `600 ${height * 0.55}px system-ui, -apple-system, sans-serif`;
   const textWidth = ctx.measureText(text).width;
   const pillWidth = textWidth + height + padding;

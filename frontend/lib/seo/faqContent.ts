@@ -150,17 +150,17 @@ export function generateProductSchema(route: SEORouteMetadata): object {
     '@type': 'Product',
     name: `${route.name} Route Poster`,
     description: route.description || `Custom map poster of the ${route.name}`,
-    image: `https://waymarker.eu/og/${route.category}/${route.slug}.png`,
+    image: `https://gridline.eu/og/${route.category}/${route.slug}.png`,
     brand: {
       '@type': 'Brand',
-      name: 'Waymarker',
+      name: 'GridLine',
     },
     offers: {
       '@type': 'Offer',
       price: '29.00',
       priceCurrency: 'EUR',
       availability: 'https://schema.org/InStock',
-      url: `https://waymarker.eu/${route.category}/${route.slug}`,
+      url: `https://gridline.eu/${route.category}/${route.slug}`,
     },
   };
 }

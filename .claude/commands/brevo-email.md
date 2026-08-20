@@ -1,12 +1,12 @@
 ---
-description: Generate on-brand Brevo email templates for Waymarker
+description: Generate on-brand Brevo email templates for GridLine
 argument-hint: [email-type] [optional-context]
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 # Brevo Email Generator
 
-Generate Brevo-compatible HTML email templates that match the Waymarker brand.
+Generate Brevo-compatible HTML email templates that match the GridLine brand.
 
 ## Email Type: $ARGUMENTS
 
@@ -50,7 +50,7 @@ Create a Brevo-compatible HTML email template based on the email type specified 
 
 ### Voice & Tone
 
-Write as Jonas, founder of Waymarker:
+Write as Jonas, founder of GridLine:
 - Personal, casual, friendly (not corporate)
 - Direct and conversational
 - Enthusiastic without being over the top

@@ -286,7 +286,7 @@ async function main() {
   }
 
   // Parse CSV (docs folder is in project root, not frontend)
-  const csvPath = path.join(__dirname, '../../docs/Waymarker Poster Redesign - Sheet1.csv');
+  const csvPath = path.join(__dirname, '../../docs/GridLine Poster Redesign - Sheet1.csv');
 
   if (!fs.existsSync(csvPath)) {
     console.error(`❌ CSV file not found: ${csvPath}`);

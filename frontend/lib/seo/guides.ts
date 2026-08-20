@@ -14,20 +14,20 @@ export const guidePages: GuidePageMetadata[] = [
     title: 'How to Turn a Strava Activity Into a Poster',
     subtitle: 'From Strava to your wall in under 5 minutes.',
     intro:
-      "You have logged hundreds of activities on Strava. Somewhere in that list is the run that changed everything, the ride you will never forget, or the hike that made you fall in love with a trail. Waymarker connects directly to your Strava account and turns any activity into a high-resolution poster you can print and frame.",
+      "You have logged hundreds of activities on Strava. Somewhere in that list is the run that changed everything, the ride you will never forget, or the hike that made you fall in love with a trail. GridLine connects directly to your Strava account and turns any activity into a high-resolution poster you can print and frame.",
     ctaText: 'Connect Strava and Start',
 
     steps: [
       {
         title: 'Open the Editor',
         description:
-          'Go to waymarker.eu/create. The editor loads with an interactive map ready for your route.',
+          'Go to gridline.eu/create. The editor loads with an interactive map ready for your route.',
         tip: 'No account required to start designing. You only need to sign in when you connect Strava.',
       },
       {
         title: 'Connect Your Strava Account',
         description:
-          'Click "Import from Strava" and authorise the connection. Waymarker requests read-only access to your activities — it cannot modify your Strava data.',
+          'Click "Import from Strava" and authorise the connection. GridLine requests read-only access to your activities — it cannot modify your Strava data.',
         tip: 'The connection is one-time. Once authorised, your activities load instantly on future visits.',
       },
       {
@@ -85,7 +85,7 @@ export const guidePages: GuidePageMetadata[] = [
       {
         question: 'Is my Strava data safe?',
         answer:
-          'Yes. Waymarker requests read-only access. It cannot modify your Strava data, post on your behalf, or access private information beyond your activity routes.',
+          'Yes. GridLine requests read-only access. It cannot modify your Strava data, post on your behalf, or access private information beyond your activity routes.',
       },
       {
         question: 'Can I disconnect Strava later?',
@@ -105,7 +105,7 @@ export const guidePages: GuidePageMetadata[] = [
       {
         question: 'Do I need a Strava premium account?',
         answer:
-          'No. The free Strava account works perfectly. Waymarker only needs access to your activity GPS data, which is available on all accounts.',
+          'No. The free Strava account works perfectly. GridLine only needs access to your activity GPS data, which is available on all accounts.',
       },
     ],
 
@@ -115,7 +115,7 @@ export const guidePages: GuidePageMetadata[] = [
       buttonText: 'Connect Strava and Start',
     },
 
-    metaTitle: 'How to Turn a Strava Activity Into a Poster | Waymarker',
+    metaTitle: 'How to Turn a Strava Activity Into a Poster | GridLine',
     metaDescription:
       'Connect Strava, select an activity, and create a custom route poster in 5 minutes. 11 map styles. High-res download from EUR 12.',
     keywords: [
@@ -135,7 +135,7 @@ export const guidePages: GuidePageMetadata[] = [
     title: 'How to Create a Poster from a GPX File',
     subtitle: 'Any GPS device. Any route. One stunning poster.',
     intro:
-      "A GPX file is a universal GPS data format that nearly every running watch, cycling computer, and outdoor app can export. If you have a GPX file, you have everything you need to create a custom route poster. Upload it to Waymarker, choose a style, and download a print-ready poster in minutes.",
+      "A GPX file is a universal GPS data format that nearly every running watch, cycling computer, and outdoor app can export. If you have a GPX file, you have everything you need to create a custom route poster. Upload it to GridLine, choose a style, and download a print-ready poster in minutes.",
     ctaText: 'Upload Your GPX File',
 
     steps: [
@@ -148,7 +148,7 @@ export const guidePages: GuidePageMetadata[] = [
       {
         title: 'Open the Editor',
         description:
-          'Go to waymarker.eu/create and click the route upload button. Select your GPX file from your device. The route appears on the map within seconds.',
+          'Go to gridline.eu/create and click the route upload button. Select your GPX file from your device. The route appears on the map within seconds.',
       },
       {
         title: 'Position the Map',
@@ -215,7 +215,7 @@ export const guidePages: GuidePageMetadata[] = [
       {
         question: 'What if my GPX file has no elevation data?',
         answer:
-          'Waymarker can fetch elevation data from terrain sources for your route coordinates. Your poster and 3D sculpture will still show accurate terrain.',
+          'GridLine can fetch elevation data from terrain sources for your route coordinates. Your poster and 3D sculpture will still show accurate terrain.',
       },
       {
         question: 'Is there a file size limit?',
@@ -235,7 +235,7 @@ export const guidePages: GuidePageMetadata[] = [
       buttonText: 'Upload Your GPX File',
     },
 
-    metaTitle: 'How to Create a Poster from a GPX File | Waymarker',
+    metaTitle: 'How to Create a Poster from a GPX File | GridLine',
     metaDescription:
       'Upload any GPX file and create a custom route poster. Works with Garmin, Suunto, Coros, Komoot. 11 styles. Download from EUR 12.',
     keywords: [
@@ -255,14 +255,14 @@ export const guidePages: GuidePageMetadata[] = [
     title: 'How to 3D Print Your Running Route',
     subtitle: 'Turn kilometres into something you can hold in your hands.',
     intro:
-      "A poster hangs on the wall. A 3D sculpture sits on your desk, your shelf, or your mantelpiece — a physical, tactile piece of the terrain you ran across. Waymarker generates STL files from real elevation data, creating a miniature landscape of your route. Upload to any 3D printing service or print on your own machine.",
+      "A poster hangs on the wall. A 3D sculpture sits on your desk, your shelf, or your mantelpiece — a physical, tactile piece of the terrain you ran across. GridLine generates STL files from real elevation data, creating a miniature landscape of your route. Upload to any 3D printing service or print on your own machine.",
     ctaText: 'Create Your 3D Route',
 
     steps: [
       {
         title: 'Import Your Route',
         description:
-          'Open waymarker.eu/create. Import from Strava, upload a GPX file, or select a famous route. Routes with significant elevation changes produce the most dramatic sculptures.',
+          'Open gridline.eu/create. Import from Strava, upload a GPX file, or select a famous route. Routes with significant elevation changes produce the most dramatic sculptures.',
         tip: 'Mountain runs, trail races, and hilly road routes create the most visually striking 3D models. Flat routes work too, but the terrain relief will be subtle.',
       },
       {
@@ -357,7 +357,7 @@ export const guidePages: GuidePageMetadata[] = [
       buttonText: 'Create Your 3D Sculpture',
     },
 
-    metaTitle: 'How to 3D Print Your Running Route | Waymarker',
+    metaTitle: 'How to 3D Print Your Running Route | GridLine',
     metaDescription:
       'Create a 3D sculpture of your running route with real terrain elevation. STL export for any 3D printer. From EUR 29.',
     keywords: [
@@ -377,14 +377,14 @@ export const guidePages: GuidePageMetadata[] = [
     title: 'How to Create a Custom Running Map Poster',
     subtitle: 'Your route. Your style. Your wall.',
     intro:
-      "Whether it is a race you finished, a training run you loved, or a route you designed yourself, Waymarker turns any running route into a high-resolution map poster. No design skills needed. Import from Strava, upload a GPX file, or draw the route directly on an interactive map.",
+      "Whether it is a race you finished, a training run you loved, or a route you designed yourself, GridLine turns any running route into a high-resolution map poster. No design skills needed. Import from Strava, upload a GPX file, or draw the route directly on an interactive map.",
     ctaText: 'Start Creating',
 
     steps: [
       {
         title: 'Start with Your Route',
         description:
-          'Open waymarker.eu/create and choose how to add your route: connect Strava, upload a GPX file, or draw directly on the map with automatic road snapping.',
+          'Open gridline.eu/create and choose how to add your route: connect Strava, upload a GPX file, or draw directly on the map with automatic road snapping.',
         tip: 'The route builder is perfect if you do not have GPS data. Click waypoints and the route follows roads and paths automatically.',
       },
       {
@@ -481,7 +481,7 @@ export const guidePages: GuidePageMetadata[] = [
       buttonText: 'Create Your Running Map Poster',
     },
 
-    metaTitle: 'How to Create a Custom Running Map Poster | Waymarker',
+    metaTitle: 'How to Create a Custom Running Map Poster | GridLine',
     metaDescription:
       'Create a custom running route poster from Strava, GPX, or hand-drawn routes. 11 map styles. High-res download from EUR 12.',
     keywords: [
@@ -508,7 +508,7 @@ export const guidePages: GuidePageMetadata[] = [
       {
         title: 'Import Your Ride',
         description:
-          'Open waymarker.eu/create and import your cycling route. Connect Strava, upload a GPX from Garmin/Wahoo/Komoot, or draw directly with the cycling profile route builder.',
+          'Open gridline.eu/create and import your cycling route. Connect Strava, upload a GPX from Garmin/Wahoo/Komoot, or draw directly with the cycling profile route builder.',
         tip: 'The cycling profile in the route builder snaps to roads and cycling paths, avoiding pedestrian-only shortcuts.',
       },
       {
@@ -576,7 +576,7 @@ export const guidePages: GuidePageMetadata[] = [
       {
         question: 'Can I import rides from Garmin, Wahoo, or other cycling computers?',
         answer:
-          'Yes. Export a GPX file from Garmin Connect, Wahoo, or any platform, then upload it to Waymarker. Takes seconds.',
+          'Yes. Export a GPX file from Garmin Connect, Wahoo, or any platform, then upload it to GridLine. Takes seconds.',
       },
       {
         question: 'Does the poster show elevation gain?',
@@ -607,7 +607,7 @@ export const guidePages: GuidePageMetadata[] = [
       buttonText: 'Design Your Cycling Poster',
     },
 
-    metaTitle: 'How to Design a Cycling Route Poster | Waymarker',
+    metaTitle: 'How to Design a Cycling Route Poster | GridLine',
     metaDescription:
       'Create a custom cycling route poster from Strava or GPX. Mont Ventoux, Alpe d\'Huez, or any ride. 11 styles. From EUR 12.',
     keywords: [

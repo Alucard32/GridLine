@@ -91,7 +91,7 @@ export const fetcherConfig = {
 
   // User agent for requests
   userAgent:
-    'Waymarker-Seeder/1.0 (https://waymarker.eu; contact@waymarker.eu)',
+    'GridLine-Seeder/1.0 (https://gridline.eu; contact@gridline.eu)',
 };
 
 // GPX source base URLs
