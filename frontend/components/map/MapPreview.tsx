@@ -472,7 +472,7 @@ export function MapPreview({
         keyboard={interactive}
       >
       {/* Center viewfinder — stays in the middle of the screen */}
-      {showMarker && !route?.data && (
+      {showMarker && !route?.data && (layers?.markerType ?? 'none') !== 'none' && (
         <div
           className={cn(
             'pointer-events-none absolute inset-0 z-20 flex items-center justify-center',
@@ -480,7 +480,7 @@ export function MapPreview({
           )}
         >
           <MarkerIcon
-            type={layers?.markerType || 'crosshair'}
+            type={layers?.markerType || 'none'}
             color={markerColor}
             size={40 * (layers?.markerScale ?? 1)}
           />
@@ -489,8 +489,9 @@ export function MapPreview({
 
       {/* Geographic pins placed via "Mark location" */}
       {showMarker &&
+        (layers?.markerType ?? 'none') !== 'none' &&
         layers?.placedMarkers?.map(([lng, lat], index) => {
-          const markerType = layers.markerType || 'crosshair';
+          const markerType = layers.markerType || 'none';
           return (
             <Marker
               key={`${lng}-${lat}-${index}`}

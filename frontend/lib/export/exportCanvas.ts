@@ -177,9 +177,10 @@ export async function exportMapToPNG(options: ExportOptions): Promise<Blob> {
     if (config.layers.marker) {
       const markerSize = exportResolution.width * 0.045 * (config.layers.markerScale ?? 1);
       const markerColor = config.layers.markerColor || config.palette.primary || config.palette.accent || config.palette.text;
-      const markerType = config.layers.markerType || 'crosshair';
+      const markerType = config.layers.markerType || 'none';
       const placedMarkers = config.layers.placedMarkers ?? [];
 
+      if (markerType !== 'none') {
       if (placedMarkers.length > 0) {
         const canvas = map.getCanvas();
         const cssWidth = canvas.clientWidth || canvas.width;
@@ -200,6 +201,7 @@ export async function exportMapToPNG(options: ExportOptions): Promise<Blob> {
         const markerX = marginPx + drawWidth / 2;
         const markerY = marginPx + drawHeight / 2;
         drawMarker(exportCtx, markerX, markerY, markerSize, markerColor, markerType);
+      }
       }
     }
 

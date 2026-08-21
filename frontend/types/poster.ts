@@ -146,7 +146,8 @@ export interface PosterConfig {
     'labels-cities'?: boolean; // Toggle for city names
     boundaries?: boolean; // Toggle for administrative boundaries (country/state/county)
     marker: boolean;
-    markerType?: 'pin' | 'crosshair' | 'dot' | 'ring' | 'heart' | 'home';
+    /** Icon style for location markers. `ring` kept for legacy saved configs. */
+    markerType?: 'none' | 'pin' | 'home' | 'heart' | 'dot' | 'crosshair' | 'star' | 'diamond' | 'flag' | 'ring';
     markerColor?: string;
     /** Icon size multiplier (0.5–1.5, default 1 = 100%) */
     markerScale?: number;

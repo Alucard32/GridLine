@@ -4,7 +4,20 @@ import { PosterConfig, LayerToggle, ColorPalette } from '@/types/poster';
 import { cn } from '@/lib/utils';
 import { HexColorPicker } from 'react-colorful';
 import { useState, useMemo } from 'react';
-import { Heart, Home, MapPin, MapPinPlus, Target, Circle, Radio, Ruler, X } from 'lucide-react';
+import {
+  Ban,
+  CircleDot,
+  Crosshair,
+  Flag,
+  Heart,
+  Home,
+  MapPin,
+  MapPinPlus,
+  Ruler,
+  Sparkles,
+  Star,
+  X,
+} from 'lucide-react';
 import { ControlSection, ControlCheckbox, ControlSlider, ControlLabel, ControlInput, CollapsibleSection } from '@/components/ui/control-components';
 import { Tooltip } from '@/components/ui/tooltip';
 
@@ -17,12 +30,15 @@ interface LayerControlsProps {
 }
 
 const markerTypes = [
-  { id: 'crosshair', icon: Target, label: 'Target' },
+  { id: 'none', icon: Ban, label: 'None' },
   { id: 'pin', icon: MapPin, label: 'Pin' },
-  { id: 'dot', icon: Circle, label: 'Dot' },
-  { id: 'ring', icon: Radio, label: 'Ring' },
-  { id: 'heart', icon: Heart, label: 'Heart' },
   { id: 'home', icon: Home, label: 'Home' },
+  { id: 'heart', icon: Heart, label: 'Heart' },
+  { id: 'dot', icon: CircleDot, label: 'Dot' },
+  { id: 'crosshair', icon: Crosshair, label: 'Target' },
+  { id: 'star', icon: Star, label: 'Star' },
+  { id: 'diamond', icon: Sparkles, label: 'Diamond' },
+  { id: 'flag', icon: Flag, label: 'Flag' },
 ] as const;
 
 const scaleBarPositions = [
@@ -474,7 +490,7 @@ export function LayerControls({ layers, onLayersChange, availableToggles, palett
                   <ControlLabel className="text-[10px] uppercase text-gray-500">Icon Style</ControlLabel>
                   <div className="grid grid-cols-3 gap-2">
                     {markerTypes.map(({ id, icon: Icon, label }) => {
-                      const isActive = layers.markerType === id;
+                      const isActive = (layers.markerType ?? 'none') === id;
                       return (
                         <button
                           key={id}
@@ -492,6 +508,8 @@ export function LayerControls({ layers, onLayersChange, availableToggles, palett
                       );
                     })}
                   </div>
+                  {(layers.markerType ?? 'none') !== 'none' && (
+                    <>
                   <button
                     type="button"
                     onClick={handleMarkLocation}
@@ -525,8 +543,12 @@ export function LayerControls({ layers, onLayersChange, availableToggles, palett
                       ))}
                     </div>
                   )}
+                    </>
+                  )}
                 </div>
 
+                {(layers.markerType ?? 'none') !== 'none' && (
+                  <>
                 {/* Icon Scale */}
                 <div className="space-y-1">
                   <ControlLabel className="text-[10px] uppercase text-gray-500">Icon Size</ControlLabel>
@@ -598,6 +620,8 @@ export function LayerControls({ layers, onLayersChange, availableToggles, palett
                     </div>
                   )}
                 </div>
+                  </>
+                )}
               </div>
             </div>
           )}

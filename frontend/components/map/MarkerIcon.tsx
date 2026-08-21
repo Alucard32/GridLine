@@ -1,67 +1,97 @@
 import React from 'react';
-import { Heart, Home } from 'lucide-react';
+import { Flag, Heart, Home, Sparkles, Star } from 'lucide-react';
+import type { PosterConfig } from '@/types/poster';
+
+export type MarkerIconType = NonNullable<PosterConfig['layers']['markerType']>;
 
 interface MarkerIconProps {
-  type?: 'pin' | 'crosshair' | 'dot' | 'ring' | 'heart' | 'home';
+  type?: MarkerIconType;
   size?: number;
   color?: string;
   borderColor?: string;
   shadow?: boolean;
 }
 
+function LucideMarker({
+  Icon,
+  size,
+  color,
+  borderColor,
+  shadow,
+}: {
+  Icon: typeof Heart;
+  size: number;
+  color?: string;
+  borderColor: string;
+  shadow: boolean;
+}) {
+  return (
+    <div
+      style={{
+        width: size,
+        height: size,
+        filter: shadow ? 'drop-shadow(0px 2px 3px rgba(0,0,0,0.3))' : 'none',
+      }}
+      className="relative pointer-events-none flex items-center justify-center"
+    >
+      <Icon size={size * 0.8} fill={color} stroke={borderColor} strokeWidth={2} />
+    </div>
+  );
+}
+
 export const MarkerIcon: React.FC<MarkerIconProps> = ({
-  type = 'pin',
+  type = 'none',
   size = 40,
   color,
   borderColor = 'white',
   shadow = true,
 }) => {
+  if (type === 'none') {
+    return null;
+  }
+
   if (type === 'heart') {
     return (
-      <div 
-        style={{ 
-          width: size, 
-          height: size, 
-          filter: shadow ? 'drop-shadow(0px 2px 3px rgba(0,0,0,0.3))' : 'none',
-        }}
-        className="relative pointer-events-none flex items-center justify-center"
-      >
-        <Heart 
-          size={size * 0.8} 
-          fill={color} 
-          stroke={borderColor} 
-          strokeWidth={2}
-        />
-      </div>
+      <LucideMarker Icon={Heart} size={size} color={color} borderColor={borderColor} shadow={shadow} />
     );
   }
 
   if (type === 'home') {
     return (
-      <div 
-        style={{ 
-          width: size, 
-          height: size, 
-          filter: shadow ? 'drop-shadow(0px 2px 3px rgba(0,0,0,0.3))' : 'none',
-        }}
-        className="relative pointer-events-none flex items-center justify-center"
-      >
-        <Home 
-          size={size * 0.8} 
-          fill={color} 
-          stroke={borderColor} 
-          strokeWidth={2}
-        />
-      </div>
+      <LucideMarker Icon={Home} size={size} color={color} borderColor={borderColor} shadow={shadow} />
+    );
+  }
+
+  if (type === 'star') {
+    return (
+      <LucideMarker Icon={Star} size={size} color={color} borderColor={borderColor} shadow={shadow} />
+    );
+  }
+
+  if (type === 'diamond') {
+    return (
+      <LucideMarker
+        Icon={Sparkles}
+        size={size}
+        color={color}
+        borderColor={borderColor}
+        shadow={shadow}
+      />
+    );
+  }
+
+  if (type === 'flag') {
+    return (
+      <LucideMarker Icon={Flag} size={size} color={color} borderColor={borderColor} shadow={shadow} />
     );
   }
 
   if (type === 'crosshair') {
     return (
-      <div 
-        style={{ 
-          width: size, 
-          height: size, 
+      <div
+        style={{
+          width: size,
+          height: size,
         }}
         className="relative pointer-events-none flex items-center justify-center"
       >
@@ -113,20 +143,20 @@ export const MarkerIcon: React.FC<MarkerIconProps> = ({
 
   if (type === 'dot') {
     return (
-      <div 
-        style={{ 
-          width: size, 
-          height: size, 
+      <div
+        style={{
+          width: size,
+          height: size,
           filter: shadow ? 'drop-shadow(0px 1px 2px rgba(0,0,0,0.3))' : 'none',
         }}
         className="relative pointer-events-none flex items-center justify-center"
       >
-        <div 
+        <div
           className="rounded-full border-2 border-white"
-          style={{ 
-            width: size * 0.5, 
-            height: size * 0.5, 
-            backgroundColor: color 
+          style={{
+            width: size * 0.5,
+            height: size * 0.5,
+            backgroundColor: color,
           }}
         />
       </div>
@@ -135,21 +165,21 @@ export const MarkerIcon: React.FC<MarkerIconProps> = ({
 
   if (type === 'ring') {
     return (
-      <div 
-        style={{ 
-          width: size, 
-          height: size, 
+      <div
+        style={{
+          width: size,
+          height: size,
           filter: shadow ? 'drop-shadow(0px 1px 2px rgba(0,0,0,0.3))' : 'none',
         }}
         className="relative pointer-events-none flex items-center justify-center"
       >
-        <div 
+        <div
           className="rounded-full border-[3px] bg-transparent"
-          style={{ 
-            width: size * 0.7, 
-            height: size * 0.7, 
+          style={{
+            width: size * 0.7,
+            height: size * 0.7,
             borderColor: color,
-            boxShadow: 'inset 0 0 0 1px white, 0 0 0 1px white'
+            boxShadow: 'inset 0 0 0 1px white, 0 0 0 1px white',
           }}
         />
       </div>
@@ -157,13 +187,14 @@ export const MarkerIcon: React.FC<MarkerIconProps> = ({
   }
 
   // Default Pin shape path (normalized for viewBox 0 0 24 28)
-  const path = "M 12 2.1 C 7.3 2.1 3.5 5.9 3.5 10.6 c 0 5.2 7 13.9 7.9 15.1 c 0.3 0.4 0.9 0.4 1.2 0 C 13.5 24.5 20.5 15.8 20.5 10.6 c 0 -4.7 -3.8 -8.5 -8.5 -8.5 z";
-  
+  const path =
+    'M 12 2.1 C 7.3 2.1 3.5 5.9 3.5 10.6 c 0 5.2 7 13.9 7.9 15.1 c 0.3 0.4 0.9 0.4 1.2 0 C 13.5 24.5 20.5 15.8 20.5 10.6 c 0 -4.7 -3.8 -8.5 -8.5 -8.5 z';
+
   return (
-    <div 
-      style={{ 
-        width: size, 
-        height: size, 
+    <div
+      style={{
+        width: size,
+        height: size,
         filter: shadow ? 'drop-shadow(0px 2px 3px rgba(0,0,0,0.3))' : 'none',
       }}
       className="relative pointer-events-none"
@@ -176,7 +207,6 @@ export const MarkerIcon: React.FC<MarkerIconProps> = ({
         xmlns="http://www.w3.org/2000/svg"
         style={{ overflow: 'visible' }}
       >
-        {/* Stroke Layer (White Border) */}
         <path
           d={path}
           fill={borderColor}
@@ -184,15 +214,9 @@ export const MarkerIcon: React.FC<MarkerIconProps> = ({
           strokeWidth="2.5"
           strokeLinejoin="round"
         />
-        {/* Main Color Layer */}
-        <path
-          d={path}
-          fill={color}
-        />
-        {/* Central Dot/Hole */}
+        <path d={path} fill={color} />
         <circle cx="12" cy="10.5" r="3.5" fill="white" />
       </svg>
     </div>
   );
 };
-

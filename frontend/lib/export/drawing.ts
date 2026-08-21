@@ -4,9 +4,21 @@ export function drawMarker(
   y: number,
   size: number,
   color: string,
-  type: 'pin' | 'crosshair' | 'dot' | 'ring' | 'heart' | 'home' = 'crosshair'
+  type:
+    | 'none'
+    | 'pin'
+    | 'crosshair'
+    | 'dot'
+    | 'ring'
+    | 'heart'
+    | 'home'
+    | 'star'
+    | 'diamond'
+    | 'flag' = 'none'
 ) {
   switch (type) {
+    case 'none':
+      return;
     case 'pin':
       drawPinMarker(ctx, x, y, size, color);
       break;
@@ -21,6 +33,15 @@ export function drawMarker(
       break;
     case 'home':
       drawHomeMarker(ctx, x, y, size, color);
+      break;
+    case 'star':
+      drawStarMarker(ctx, x, y, size, color);
+      break;
+    case 'diamond':
+      drawDiamondMarker(ctx, x, y, size, color);
+      break;
+    case 'flag':
+      drawFlagMarker(ctx, x, y, size, color);
       break;
     case 'crosshair':
     default:
@@ -233,6 +254,101 @@ function drawRingMarker(
   ctx.arc(x, y, size * 0.35 - (size * 0.06), 0, Math.PI * 2);
   ctx.stroke();
   
+  ctx.restore();
+}
+
+function drawStarMarker(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  size: number,
+  color: string
+) {
+  ctx.save();
+  const scale = (size * 0.8) / 24;
+  ctx.translate(x - 12 * scale, y - 12 * scale);
+  ctx.scale(scale, scale);
+
+  const path = new Path2D(
+    'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'
+  );
+
+  ctx.shadowColor = 'rgba(0,0,0,0.3)';
+  ctx.shadowBlur = 4;
+  ctx.shadowOffsetY = 2;
+  ctx.fillStyle = color;
+  ctx.fill(path);
+  ctx.strokeStyle = 'white';
+  ctx.lineWidth = 2;
+  ctx.lineJoin = 'round';
+  ctx.stroke(path);
+  ctx.restore();
+}
+
+function drawDiamondMarker(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  size: number,
+  color: string
+) {
+  ctx.save();
+  const scale = (size * 0.8) / 24;
+  ctx.translate(x - 12 * scale, y - 12 * scale);
+  ctx.scale(scale, scale);
+
+  // Lucide Sparkles paths
+  const paths = [
+    new Path2D(
+      'M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z'
+    ),
+    new Path2D('M20 3v4'),
+    new Path2D('M22 5h-4'),
+    new Path2D('M4 17v2'),
+    new Path2D('M5 18H3'),
+  ];
+
+  ctx.shadowColor = 'rgba(0,0,0,0.3)';
+  ctx.shadowBlur = 4;
+  ctx.shadowOffsetY = 2;
+  ctx.fillStyle = color;
+  ctx.fill(paths[0]);
+  ctx.strokeStyle = 'white';
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  for (const path of paths) {
+    ctx.stroke(path);
+  }
+  ctx.restore();
+}
+
+function drawFlagMarker(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  size: number,
+  color: string
+) {
+  ctx.save();
+  const scale = (size * 0.8) / 24;
+  ctx.translate(x - 12 * scale, y - 12 * scale);
+  ctx.scale(scale, scale);
+
+  const flag = new Path2D('M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z');
+  const pole = new Path2D('M4 22v-7');
+
+  ctx.shadowColor = 'rgba(0,0,0,0.3)';
+  ctx.shadowBlur = 4;
+  ctx.shadowOffsetY = 2;
+  ctx.fillStyle = color;
+  ctx.fill(flag);
+  ctx.strokeStyle = 'white';
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.stroke(flag);
+  ctx.stroke(pole);
   ctx.restore();
 }
 

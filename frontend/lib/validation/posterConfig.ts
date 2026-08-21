@@ -185,7 +185,9 @@ export const PosterConfigSchema: z.ZodType<PosterConfig> = z.object({
     'labels-cities': z.boolean().optional(),
     boundaries: z.boolean().optional(),
     marker: z.boolean(),
-    markerType: z.enum(['pin', 'crosshair', 'dot', 'ring', 'heart', 'home']).optional(),
+    markerType: z
+      .enum(['none', 'pin', 'home', 'heart', 'dot', 'crosshair', 'star', 'diamond', 'flag', 'ring'])
+      .optional(),
     markerColor: z.string().optional(),
     markerScale: z.number().min(0.5).max(1.5).optional(),
     placedMarkers: z.array(z.tuple([z.number(), z.number()])).optional(),
