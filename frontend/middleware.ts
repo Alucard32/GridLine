@@ -18,9 +18,10 @@ export const config = {
      * - favicon.ico (favicon file)
      * - sitemap.xml (must be accessible without auth for Google/Bing crawlers)
      * - robots.txt (must be accessible without auth for crawlers)
+     * - api/tiles (high-volume map tiles — skip Supabase auth to keep zoom snappy)
      * - public folder (images, etc.)
      */
-    '/((?!_next/static|_next/image|favicon.ico|sitemap\\.xml|robots\\.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|sitemap\\.xml|robots\\.txt|api/tiles/|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 };
 

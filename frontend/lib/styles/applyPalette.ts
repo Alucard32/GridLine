@@ -62,7 +62,7 @@ export function applyPaletteToStyle(
         if (!layer.layout) {
           layer.layout = {};
         }
-        const terrainUnderWaterEnabled = layers.terrainUnderWater ?? true;
+        const terrainUnderWaterEnabled = layers.terrainUnderWater ?? false;
         layer.layout.visibility = terrainUnderWaterEnabled ? 'visible' : 'none';
       }
     });
@@ -275,7 +275,7 @@ function applyVisibilityToggles(
     // Special handling for bathymetry/terrain under water
     if (layer.id.includes('bathymetry')) {
       // If terrainUnderWater is disabled or undefined, hide the layer and skip further processing
-      const terrainUnderWaterEnabled = configLayers.terrainUnderWater ?? true; // Default to true if undefined
+      const terrainUnderWaterEnabled = configLayers.terrainUnderWater ?? false;
       if (!terrainUnderWaterEnabled) {
         layer.layout.visibility = 'none';
         return; // Early return - don't process this layer further
@@ -311,7 +311,7 @@ function applyVisibilityToggles(
     } else {
       // Bathymetry layer not in any toggle (shouldn't happen, but handle it)
       // If terrainUnderWater is enabled, show it; otherwise hide it
-      const terrainUnderWaterEnabled = configLayers.terrainUnderWater ?? true;
+      const terrainUnderWaterEnabled = configLayers.terrainUnderWater ?? false;
       layer.layout.visibility = terrainUnderWaterEnabled ? 'visible' : 'none';
     }
   });
@@ -364,7 +364,7 @@ function updateLayerPaint(
     // Always ensure water is fully opaque to hide hillshade underneath
     // When terrainUnderWater is disabled, we definitely want full opacity
     // When enabled, we can allow some transparency if the style wants it
-    const terrainUnderWaterEnabled = layers?.terrainUnderWater ?? true;
+    const terrainUnderWaterEnabled = layers?.terrainUnderWater ?? false;
     const baseOpacity = layer.paint?.['fill-opacity'] ?? 1;
     // If terrainUnderWater is disabled, force full opacity to hide hillshade
     // Otherwise, use the style's opacity (but ensure it's at least 0.95 to mostly hide hillshade)
