@@ -44,7 +44,7 @@ export function HeroSection({ thumbnails = [] }: HeroSectionProps) {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-dvh flex items-center justify-center overflow-hidden"
     >
       {/* Background with topographic pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-stone-100 via-stone-50 to-primary/5 dark:from-stone-900 dark:via-stone-900 dark:to-primary/10" />
@@ -113,17 +113,17 @@ export function HeroSection({ thumbnails = [] }: HeroSectionProps) {
         })}
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 text-center">
+      {/* Main Content — compressed on mobile / short viewports for scaled text & Chrome UI */}
+      <div className="relative z-10 max-w-5xl mx-auto px-5 sm:px-6 py-12 sm:py-16 md:py-20 text-center [@media(max-height:640px)]:py-8">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 border border-primary/20 mb-8"
+          className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-primary/10 dark:bg-primary/20 border border-primary/20 mb-5 sm:mb-8 [@media(max-height:640px)]:mb-3"
         >
-          <Mountain className="w-4 h-4 text-primary" />
-          <span className="text-sm font-medium text-primary">Turn adventures into art</span>
+          <Mountain className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+          <span className="text-xs sm:text-sm font-medium text-primary">Turn adventures into art</span>
         </motion.div>
 
         {/* Main Headline */}
@@ -131,7 +131,7 @@ export function HeroSection({ thumbnails = [] }: HeroSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-stone-900 dark:text-white leading-[1.1] tracking-tight mb-6"
+          className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-stone-900 dark:text-white leading-[1.1] tracking-tight mb-4 sm:mb-6 [@media(max-height:640px)]:text-[1.75rem] [@media(max-height:640px)]:mb-3"
         >
           Your Journey.{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-accent">
@@ -144,7 +144,7 @@ export function HeroSection({ thumbnails = [] }: HeroSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg sm:text-xl text-stone-600 dark:text-stone-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-base sm:text-xl text-stone-600 dark:text-stone-400 max-w-2xl mx-auto mb-6 sm:mb-10 leading-relaxed [@media(max-height:640px)]:text-sm [@media(max-height:640px)]:mb-4"
         >
           Transform your hiking trails, running routes, and travel memories into stunning
           wall art. Draw a route, upload a GPX file, or import from Strava.
@@ -155,31 +155,31 @@ export function HeroSection({ thumbnails = [] }: HeroSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
         >
           <Link
             href="/create"
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 hover:-translate-y-0.5 text-sm sm:text-base"
           >
-            <MapPin className="w-5 h-5" />
+            <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
             Create Your First Print
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
 
           <Link
             href="/feed"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-stone-800 hover:bg-stone-50 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-200 font-semibold rounded-xl border-2 border-stone-200 dark:border-stone-700 transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-white dark:bg-stone-800 hover:bg-stone-50 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-200 font-semibold rounded-xl border-2 border-stone-200 dark:border-stone-700 transition-all duration-300 hover:-translate-y-0.5 text-sm sm:text-base"
           >
             Explore the Community
           </Link>
         </motion.div>
 
-        {/* Mobile Poster Preview */}
+        {/* Mobile Poster Preview — smaller cards; hide on short viewports so CTAs stay visible */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="lg:hidden mt-16 flex justify-center gap-4 overflow-x-auto pb-4 px-4 -mx-6"
+          className="lg:hidden mt-8 sm:mt-12 flex justify-center gap-3 sm:gap-4 overflow-x-auto pb-2 sm:pb-4 px-4 -mx-5 sm:-mx-6 [@media(max-height:640px)]:hidden"
         >
           {(useThumbnails ? thumbnails.slice(0, 3) : HERO_POSTERS.slice(0, 3)).map((item, index) => {
             const isThumbnail = useThumbnails && 'url' in item;
@@ -188,7 +188,7 @@ export function HeroSection({ thumbnails = [] }: HeroSectionProps) {
             return (
               <div
                 key={key}
-                className="flex-shrink-0 w-32 sm:w-40"
+                className="flex-shrink-0 w-24 sm:w-32 md:w-40"
                 style={{ transform: `rotate(${-4 + index * 4}deg)` }}
               >
                 <div className="aspect-[2/3] rounded-lg overflow-hidden shadow-xl border border-white/20 relative">
@@ -207,7 +207,7 @@ export function HeroSection({ thumbnails = [] }: HeroSectionProps) {
                     />
                   )}
                 </div>
-                <p className="mt-2 text-[10px] font-medium text-stone-500 dark:text-stone-400 text-center">
+                <p className="mt-1.5 sm:mt-2 text-[10px] font-medium text-stone-500 dark:text-stone-400 text-center truncate">
                   {isThumbnail ? (item as RouteThumbnail).title : (item as typeof HERO_POSTERS[0]).config.style.name}
                 </p>
               </div>
@@ -216,12 +216,12 @@ export function HeroSection({ thumbnails = [] }: HeroSectionProps) {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — desktop / tall viewports only (avoids overlapping CTAs on phones) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 hidden sm:block [@media(max-height:640px)]:hidden"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
