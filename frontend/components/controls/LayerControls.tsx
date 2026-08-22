@@ -508,8 +508,6 @@ export function LayerControls({ layers, onLayersChange, availableToggles, palett
                       );
                     })}
                   </div>
-                  {(layers.markerType ?? 'none') !== 'none' && (
-                    <>
                   <button
                     type="button"
                     onClick={handleMarkLocation}
@@ -543,12 +541,8 @@ export function LayerControls({ layers, onLayersChange, availableToggles, palett
                       ))}
                     </div>
                   )}
-                    </>
-                  )}
                 </div>
 
-                {(layers.markerType ?? 'none') !== 'none' && (
-                  <>
                 {/* Icon Scale */}
                 <div className="space-y-1">
                   <ControlLabel className="text-[10px] uppercase text-gray-500">Icon Size</ControlLabel>
@@ -620,8 +614,6 @@ export function LayerControls({ layers, onLayersChange, availableToggles, palett
                     </div>
                   )}
                 </div>
-                  </>
-                )}
               </div>
             </div>
           )}
